@@ -1,0 +1,23 @@
+<project name="IJA_project" default="run" basedir=".">
+    <description>
+        Application build file
+    </description>
+    <property name="src" location="src"/>
+    <property name="build" location="build"/>
+    <property name="dest" location="dest"/>
+    <property name="lib" location="lib"/>
+    <property name="project.name" value="PROJECTNAME"/>
+
+    <path id="lib.classpath">
+        <pathelement location="${lib}"/>
+    </path>
+
+    <target name="compile" description="compile the source">
+        <javac srcdir="${src}" destdir="${build}" includeAntRuntime="yes" classpathref="lib.classpath"/>
+    </target>
+
+    <target name="run" description="run application">
+        <java jar="dest/${project.name}-${DSTAMP}.jar" fork="true"/>
+    </target>
+
+</project>
