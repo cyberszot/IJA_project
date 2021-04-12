@@ -2,22 +2,41 @@
     <description>
         Application build file
     </description>
-    <property name="src" location="src"/>
-    <property name="build" location="build"/>
-    <property name="dest" location="dest"/>
-    <property name="lib" location="lib"/>
-    <property name="project.name" value="PROJECTNAME"/>
 
-    <path id="lib.classpath">
-        <pathelement location="${lib}"/>
+    <path id="class.path">
+        <fileset dir="lib">
+            <include name="**/*.jar"/>
+        </fileset>
     </path>
 
-    <target name="compile" description="compile the source">
-        <javac srcdir="${src}" destdir="${build}" includeAntRuntime="yes" classpathref="lib.classpath"/>
+    <target name="clean" description="clean /build a /dest">
+        <delete dir="build"/>
+        <delete dir="dest"/>
+    </target>
+
+    <target name="compile" description="compile application">
+        <mkdir dir="build"/>
+        <javac srcdir="src" destdir="build" includeantruntime="false">
+            <modulepath path="lib/lib"/>
+            <compilerarg line="--add-modules javafx.controls,javafx.fxml"/>
+            <classpath refid="class.path"/>
+        </javac>
+
+        <mkdir dir="dest"/>
+        <jar destfile="dest/IJA_project.jar" basedir="build">
+            <manifest>
+                <attribute name="Main-Class" value="sample.Main"/>
+            </manifest>
+            <zipgroupfileset dir="lib" includes="**/*.jar"/>
+            <fileset file="data/sample.fxml"/>
+        </jar>
     </target>
 
     <target name="run" description="run application">
-        <java jar="dest/${project.name}-${DSTAMP}.jar" fork="true"/>
+        <java jar="dest/IJA_project.jar" fork="true">
+            <modulepath path="lib/lib"/>
+            <jvmarg line="--add-modules javafx.controls,javafx.fxml"/>
+        </java>
     </target>
 
 </project>
