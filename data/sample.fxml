@@ -10,18 +10,18 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="420.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16">
+<VBox fx:controller="sample.Controller" prefHeight="420.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="javafx:com.sun.javafx.tools.ant">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
-            <MenuItem mnemonicParsing="false" text="Quit" />
+            <MenuItem mnemonicParsing="false" text="Quit" onAction="#handleQuitButtonAction" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
           <items>
-            <MenuItem mnemonicParsing="false" text="IJAProjectApp" />
+            <MenuItem mnemonicParsing="false" text="IJAProject" />
           </items>
         </Menu>
       </menus>
