@@ -57,12 +57,14 @@ public class Main{
         Goods goods2 = new StoreGoods("Zidle");
 
         GoodsItem itm11 = goods1.newItem(LocalDate.of(2021, 1, 5));
-        GoodsItem itm12 = goods1.newItem(LocalDate.of(2021, 1, 5));
 
         System.out.println("Pocet kusu v seznamu zbozi: "+ goods1.size());
         System.out.println("Typ zbozi: "+ goods1.getName());
         goods1.remove(itm11);
         System.out.println("Pocet kusu v seznamu zbozi po odtraneni jednoho kusu: "+ goods1.size());
+
+        System.out.println("Zbozi "+ goods1.getName() +" je prazdne: "+ goods1.empty());
+
 
     }
 
