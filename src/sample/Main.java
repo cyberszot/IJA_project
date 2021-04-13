@@ -31,6 +31,14 @@ public class Main extends Application  {
         /*  limits window resizability  */
         primaryStage.setResizable(false);
         /*----------------------*/
+
+
+        StoreGoods goods1 = new StoreGoods("okuRka");
+        StoreGoods goods2 = new StoreGoods("okuRka");
+        StoreGoods goods3 = new StoreGoods("okuRka");
+        System.out.println(new StringBuilder().append("Nazev zbozi: ").append(goods2.getName()).toString());
+        System.out.println(new StringBuilder().append("Pocet druhu zbozi na sklade je ").append(goods2.size()).toString());
+
     }
 
     public static void main(String[] args) {
