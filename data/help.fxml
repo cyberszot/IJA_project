@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox fx:controller="sample.Controller" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="javafx:com.sun.javafx.tools.ant">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="202.0" prefWidth="361.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Text layoutX="22.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aplikace zobrazuje návrh rozhraní skladu obsahující efektivní trasu nakládání zboží a jeho odvoz na výdejní místo" wrappingWidth="260.13671875" />
+            <Text layoutX="22.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aktuální interakce uživatele: " wrappingWidth="239.13671875" />
+            <Text layoutX="51.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File-&gt;Quit                  - ukončení aplikace" wrappingWidth="239.13671875" />
+            <Text layoutX="51.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Help-&gt;About ija-app - zobrazení nápovědy" wrappingWidth="239.13671875" />
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>

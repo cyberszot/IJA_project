@@ -1,13 +1,23 @@
+/**
+ * project IJA21
+ * date: 2021/04/13
+ * authors: xkyjov03    :   Dalibor Kyjovsky
+ *          xszotk07    :   Rene Szotkowski
+ *
+ * file: Main.java
+ */
 package sample;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-
+/**
+ * Hlavni trida aplikace
+ * @author
+ */
 public class Main extends Application  {
 
     @Override
@@ -23,6 +33,8 @@ public class Main extends Application  {
         /*----------------------*/
     }
 
-    public static void main(String[] args) { launch(args); }
+    public static void main(String[] args) {
+        launch(args);
+    }
 
 }
