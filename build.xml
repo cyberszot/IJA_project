@@ -23,7 +23,7 @@
         </javac>
 
         <mkdir dir="dest"/>
-        <jar destfile="dest/IJA_project.jar" basedir="build">
+        <jar destfile="dest/ija-app.jar" basedir="build">
             <manifest>
                 <attribute name="Main-Class" value="sample.Main"/>
             </manifest>
@@ -33,7 +33,7 @@
     </target>
 
     <target name="run" description="run application">
-        <java jar="dest/IJA_project.jar" fork="true">
+        <java jar="dest/ija-app.jar" fork="true">
             <modulepath path="lib/lib"/>
             <jvmarg line="--add-modules javafx.controls,javafx.fxml"/>
         </java>

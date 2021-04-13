@@ -14,35 +14,56 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-/**
- * Hlavni trida aplikace
- * @author
- */
-public class Main extends Application  {
+import java.time.LocalDate;
 
+
+public class Main{
+
+    /* GUI - pro tento ukol nepouzivam.
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root =  FXMLLoader.load(getClass().getClassLoader().getResource("sample.fxml"));
+        //Parent root =  FXMLLoader.load(getClass().getClassLoader().getResource("sample.fxml"));
         //Parent root =  FXMLLoader.load(getClass().getClassLoader().getResource("../../data/sample.fxml"));
-        primaryStage.setTitle("IJAProject");
-        primaryStage.setScene(new Scene(root, 640, 420));
-        primaryStage.show();
+        //primaryStage.setTitle("IJAProject");
+        //primaryStage.setScene(new Scene(root, 640, 420));
+        //primaryStage.show();
 
         /*  limits window resizability  */
-        primaryStage.setResizable(false);
+        //primaryStage.setResizable(false);
         /*----------------------*/
 
 
-        StoreGoods goods1 = new StoreGoods("okuRka");
+       /* StoreGoods goods1 = new StoreGoods("okuRka");
         StoreGoods goods2 = new StoreGoods("okuRka");
         StoreGoods goods3 = new StoreGoods("okuRka");
-        System.out.println(new StringBuilder().append("Nazev zbozi: ").append(goods2.getName()).toString());
-        System.out.println(new StringBuilder().append("Pocet druhu zbozi na sklade je ").append(goods2.size()).toString());
+        System.out.println(goods1.size());
+
+        Goods goods1 = new StoreGoods("Stul");
+        Goods goods2 = new StoreGoods("Zidle");
+
+        GoodsItem itm11 = goods1.newItem(LocalDate.of(2021, 1, 5));
+
+        System.out.println("Pocet kusu v seznamu zbozi: "+ goods1.size());
+
 
     }
+    */
 
     public static void main(String[] args) {
-        launch(args);
+        //launch(args);
+
+        // Zakladni operace s objekty. Jen ciste textovy vystup.
+        Goods goods1 = new StoreGoods("Stul");
+        Goods goods2 = new StoreGoods("Zidle");
+
+        GoodsItem itm11 = goods1.newItem(LocalDate.of(2021, 1, 5));
+        GoodsItem itm12 = goods1.newItem(LocalDate.of(2021, 1, 5));
+
+        System.out.println("Pocet kusu v seznamu zbozi: "+ goods1.size());
+        System.out.println("Typ zbozi: "+ goods1.getName());
+        goods1.remove(itm11);
+        System.out.println("Pocet kusu v seznamu zbozi po odtraneni jednoho kusu: "+ goods1.size());
+
     }
 
 }

@@ -1,3 +1,11 @@
+/**
+ * project IJA21
+ * date: 2021/04/13
+ * authors: xkyjov03    :   Dalibor Kyjovsky
+ *
+ * file: Goods.java
+ */
+
 package sample;
 
 import java.time.LocalDate;
