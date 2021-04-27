@@ -14,10 +14,10 @@
         <delete dir="dest"/>
     </target>
 
-    <target name="compile" description="compile application">
+    <target name="compile" description="compile application" depends="clean">
         <mkdir dir="build"/>
         <javac srcdir="src" destdir="build" includeantruntime="false">
-            <modulepath path="lib/lib"/>
+            <modulepath path="lib/javafx-sdk-11.0.2/lib"/>
             <compilerarg line="--add-modules javafx.controls,javafx.fxml"/>
             <classpath refid="class.path"/>
         </javac>
@@ -29,12 +29,13 @@
             </manifest>
             <zipgroupfileset dir="lib" includes="**/*.jar"/>
             <fileset file="data/sample.fxml"/>
+            <fileset file="data/help.fxml"/>
         </jar>
     </target>
 
-    <target name="run" description="run application">
+    <target name="run" description="run application" depends="compile">
         <java jar="dest/ija-app.jar" fork="true">
-            <modulepath path="lib/lib"/>
+            <modulepath path="lib/javafx-sdk-11.0.2/lib"/>
             <jvmarg line="--add-modules javafx.controls,javafx.fxml"/>
         </java>
     </target>

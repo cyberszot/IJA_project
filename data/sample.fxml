@@ -10,33 +10,33 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:controller="sample.Controller" prefHeight="420.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="javafx:com.sun.javafx.tools.ant">
+<VBox prefHeight="420.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
-            <MenuItem mnemonicParsing="false" text="Quit" onAction="#handleQuitButtonAction" />
+            <MenuItem mnemonicParsing="false" onAction="#handleQuitButtonAction" text="Quit" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
           <items>
-            <MenuItem mnemonicParsing="false" text="About ija-app" onAction="#handleHelpButtonAction" />
+            <MenuItem mnemonicParsing="false" onAction="#handleHelpButtonAction" text="About ija-app" />
           </items>
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane prefHeight="425.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+    <AnchorPane onMouseClicked="#onClickEvent" prefHeight="425.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
       <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a8d5ff" height="400.0" stroke="#a8d5ff" strokeType="INSIDE" width="640.0" />
-        <Label alignment="CENTER" layoutX="266.0" layoutY="359.0" opacity="0.69" style="&#10;" text="ALPHA BUILD" textAlignment="CENTER" textFill="#9f9f9f" >
+        <Label alignment="CENTER" layoutX="266.0" layoutY="359.0" opacity="0.69" style="&#10;" text="ALPHA BUILD" textAlignment="CENTER" textFill="#9f9f9f">
           <font>
             <Font size="18.0" />
           </font>
         </Label>
             <Group layoutX="14.0" layoutY="14.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5b235" height="25.0" layoutX="60.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" width="16.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5b235" height="25.0" layoutX="60.0" layoutY="61.0" stroke="BLACK" strokeType="INSIDE" width="16.0" />
+            <Rectangle id="000" arcHeight="5.0" arcWidth="5.0" fill="#f5b235" height="25.0" layoutX="60.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" width="16.0" />
+            <Rectangle id="001" arcHeight="5.0" arcWidth="5.0" fill="#f5b235" height="25.0" layoutX="60.0" layoutY="61.0" stroke="BLACK" strokeType="INSIDE" width="16.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5b235" height="25.0" layoutX="60.0" layoutY="86.0" stroke="BLACK" strokeType="INSIDE" width="16.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5b235" height="25.0" layoutX="60.0" layoutY="111.0" stroke="BLACK" strokeType="INSIDE" width="16.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5b235" height="25.0" layoutX="60.0" layoutY="136.0" stroke="BLACK" strokeType="INSIDE" width="16.0" />

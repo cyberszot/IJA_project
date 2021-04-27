@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 
@@ -32,6 +33,11 @@ public class Controller {
         help.setScene(new Scene(root, 420, 260));
         help.show();
         help.setResizable(false);
+    }
+
+    public void onClickEvent(MouseEvent mouseEvent) {
+        String source2 = mouseEvent.getPickResult().getIntersectedNode().getId(); //returns JUST the id of the object that was clicked
+        System.out.println("Just the id: " + source2);
     }
 }
 
