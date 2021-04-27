@@ -13,10 +13,16 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
+
+import java.time.LocalDate;
 
 /**
  * Ovladani uzivatelskeho rozhrani
@@ -35,9 +41,27 @@ public class Controller {
         help.setResizable(false);
     }
 
+    // ilustracni data
+    Goods goods1 = new StoreGoods("Stul");
+    GoodsItem itm11 = goods1.newItem(LocalDate.of(2021, 1, 5));
+
     public void onClickEvent(MouseEvent mouseEvent) {
-        String source2 = mouseEvent.getPickResult().getIntersectedNode().getId(); //returns JUST the id of the object that was clicked
-        System.out.println("Just the id: " + source2);
+        String shelfID = mouseEvent.getPickResult().getIntersectedNode().getId(); //returns JUST the id of the object that was clicked
+        if(!shelfID.equals("null")) {
+            Stage shelfWindow = new Stage();
+            shelfWindow.setTitle("shelf id: " + shelfID);
+            Label goodsTypeText = new Label("typ zbozi: " + goods1.getName());
+            Label goodsAmountText = new Label("mnozstvi: " + goods1.size());
+
+            VBox container = new VBox(goodsTypeText, goodsAmountText);
+            container.setSpacing(15);
+            container.setPadding(new Insets(15));
+            container.setAlignment(Pos.CENTER_LEFT);
+
+            shelfWindow.setScene(new Scene(container, 250, 100));
+            shelfWindow.show();
+            shelfWindow.setResizable(false);
+        }
     }
 }
 
