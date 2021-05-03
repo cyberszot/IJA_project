@@ -1,3 +1,4 @@
+
 <project name="IJA_project" default="run" basedir=".">
     <description>
         Application build file
@@ -15,9 +16,12 @@
     </target>
 
     <target name="compile" description="compile application" depends="clean">
+        <exec executable="/bin/bash">
+            <arg value="lib/get-libs.sh"/>
+        </exec>
         <mkdir dir="build"/>
         <javac srcdir="src" destdir="build" includeantruntime="false">
-            <modulepath path="lib/javafx-sdk-11.0.2/lib"/>
+            <modulepath path="lib/javafx-sdk-16/lib"/>
             <compilerarg line="--add-modules javafx.controls,javafx.fxml"/>
             <classpath refid="class.path"/>
         </javac>
@@ -35,7 +39,7 @@
 
     <target name="run" description="run application" depends="compile">
         <java jar="dest/ija-app.jar" fork="true">
-            <modulepath path="lib/javafx-sdk-11.0.2/lib"/>
+            <modulepath path="lib/javafx-sdk-16/lib"/>
             <jvmarg line="--add-modules javafx.controls,javafx.fxml"/>
         </java>
     </target>

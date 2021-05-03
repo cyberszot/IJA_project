@@ -10,6 +10,7 @@ package sample;
 
 import java.time.LocalDate;
 
+
 public class StoreGoodsItem implements GoodsItem{
 
     private Goods _goods;

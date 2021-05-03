@@ -24,6 +24,7 @@ import javafx.scene.Parent;
 
 import java.time.LocalDate;
 
+
 /**
  * Ovladani uzivatelskeho rozhrani
  * @author Rene Szotkowski

@@ -22,7 +22,7 @@ public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root =  FXMLLoader.load(getClass().getClassLoader().getResource("sample.fxml"));
-        //Parent root =  FXMLLoader.load(getClass().getClassLoader().getResource("../../data/sample.fxml"));
+       // Parent root =  FXMLLoader.load(getClass().getClassLoader().getResource("../../data/sample.fxml"));
         primaryStage.setTitle("IJAProject");
         primaryStage.setScene(new Scene(root, 640, 420));
         primaryStage.show();
@@ -35,8 +35,7 @@ public class Main extends Application{
 
     public static void main(String[] args) {
 
-
-        // Zakladni operace s objekty. Jen ciste textovy vystup.
+        //Zakladni operace s objekty. Jen ciste textovy vystup.
         Goods goods1 = new StoreGoods("Stul");
         Goods goods2 = new StoreGoods("Zidle");
 
