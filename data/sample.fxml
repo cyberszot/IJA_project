@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Group?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
 
 <VBox prefHeight="420.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
   <children>
@@ -29,11 +29,6 @@
     <AnchorPane onMouseClicked="#onClickEvent" prefHeight="425.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
       <children>
             <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#a8d5ff" height="400.0" stroke="#a8d5ff" strokeType="INSIDE" width="640.0" />
-        <Label id="null" alignment="CENTER" layoutX="266.0" layoutY="359.0" opacity="0.69" style="&#10;" text="ALPHA BUILD" textAlignment="CENTER" textFill="#9f9f9f">
-          <font>
-            <Font size="18.0" />
-          </font>
-        </Label>
             <Group layoutX="14.0" layoutY="14.0" />
             <Rectangle id="0l0" arcHeight="5.0" arcWidth="5.0" fill="#f5b235" height="25.0" layoutX="60.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" width="16.0" />
             <Rectangle id="0l1" arcHeight="5.0" arcWidth="5.0" fill="#f5b235" height="25.0" layoutX="60.0" layoutY="61.0" stroke="BLACK" strokeType="INSIDE" width="16.0" />
@@ -206,7 +201,25 @@
             <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#59afff" height="348.0" layoutX="409.0" layoutY="14.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
             <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#59afff" height="348.0" layoutX="475.0" layoutY="14.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
             <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#59afff" height="348.0" layoutX="540.0" layoutY="14.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
-            <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#ffdf85" height="27.0" layoutX="82.0" layoutY="362.0" stroke="BLACK" strokeType="INSIDE" width="68.0" />
+            <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#ffdf85" height="27.0" layoutX="75.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="34.0" />
+            <ToolBar id="null" layoutX="391.0" layoutY="362.0" prefHeight="35.0" prefWidth="154.0">
+              <items>
+                <Button id="null" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="1" />
+                  <Button id="null" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="2" />
+                  <Button id="null" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="3" />
+                  <Button id="null" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="4" />
+                  <Button id="null" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="5" />
+              </items>
+            </ToolBar>
+            <Button id="null" layoutX="556.0" layoutY="367.0" mnemonicParsing="false" text="RESET" />
+            <ToolBar id="null" layoutX="15.0" layoutY="362.0" prefHeight="35.0" prefWidth="96.0">
+               <items>
+                  <Button id="null" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="1" />
+                  <Button id="null" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="2" />
+                  <Button id="null" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="3" />
+               </items>
+            </ToolBar>
+            <Button id="null" layoutX="116.0" layoutY="367.0" mnemonicParsing="false" text="Pozadavek" />
       </children>
     </AnchorPane>
   </children>
