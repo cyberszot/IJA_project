@@ -6,7 +6,7 @@
  *
  * file: Controller.java
  */
-package sample;
+package cz.vut.fit.ija21;
 
 
 import javafx.application.Platform;

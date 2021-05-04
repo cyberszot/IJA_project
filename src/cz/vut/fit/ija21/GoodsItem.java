@@ -6,7 +6,7 @@
  * file: GoodsItem.java
  */
 
-package sample;
+package cz.vut.fit.ija21;
 
 public interface GoodsItem {
     Goods goods();

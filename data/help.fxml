@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:controller="sample.Controller" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="javafx:com.sun.javafx.tools.ant">
+<VBox fx:controller="cz.vut.fit.ija21.Controller" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="javafx:com.sun.javafx.tools.ant">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="202.0" prefWidth="361.0" VBox.vgrow="ALWAYS">
          <children>
