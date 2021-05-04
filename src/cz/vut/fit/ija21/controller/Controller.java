@@ -9,23 +9,27 @@
 package cz.vut.fit.ija21.controller;
 
 
-import cz.vut.fit.ija21.main.Goods;
-import cz.vut.fit.ija21.main.GoodsItem;
-import cz.vut.fit.ija21.main.StoreGoods;
+import cz.vut.fit.ija21.main.*;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -33,6 +37,11 @@ import java.time.LocalDate;
  * @author Rene Szotkowski
  */
 public class Controller {
+    @FXML
+    private ChoiceBox types;
+    @FXML
+    private Pane content;
+
     @FXML protected void handleQuitButtonAction(ActionEvent event){
         Platform.exit();
     }
@@ -43,6 +52,27 @@ public class Controller {
         help.setScene(new Scene(root, 420, 260));
         help.show();
         help.setResizable(false);
+    }
+
+    private List<Canvas> elements = new ArrayList<>();
+
+    public void setElements(List<Canvas> elements)
+    {
+        this.elements = elements;
+
+        set_shelfs();
+    }
+
+    @FXML
+    private void set_shelfs()
+    {
+        ObservableList<String> items = FXCollections.observableArrayList();
+        for(Shelfs s : Main.get_goodsInShelfs())
+        {
+            items.add(s.getId());
+        }
+
+        types.setItems(items);
     }
 
     // ilustracni data

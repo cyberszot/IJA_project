@@ -8,31 +8,86 @@
  */
 package cz.vut.fit.ija21.main;
 
+import cz.vut.fit.ija21.controller.Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+import java.util.ArrayList;
 import java.time.LocalDate;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.nio.file.*;
+import java.util.List;
+import java.util.Scanner;
+
+
 
 
 public class Main extends Application{
 
+    public static List<Canvas> elem = new ArrayList<>();
+    public static List<Shelfs> goodsInShelfs = new ArrayList<>();
+    public static List<Shelfs> get_goodsInShelfs(){
+        return goodsInShelfs;
+    }
+    public static List<Canvas> get_elements(){
+        return elem;
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception{
+
+        List<String> shelfList = new ArrayList<>();
+
+       // FXMLLoader ld =  FXMLLoader.load(getClass().getClassLoader().getResource("sample.fxml"));
         Parent root =  FXMLLoader.load(getClass().getClassLoader().getResource("sample.fxml"));
-       // Parent root =  FXMLLoader.load(getClass().getClassLoader().getResource("../../data/sample.fxml"));
+        // BorderPane root = ld.load();
+          // Scene scene = new Scene(root, 640, 420);
         primaryStage.setTitle("IJAProject");
-        primaryStage.setScene(new Scene(root, 640, 420));
+       primaryStage.setScene(new Scene(root, 640, 420));
         primaryStage.show();
+
+     //   Controller controller = ld.getController();
 
         /*  limits window resizability  */
         primaryStage.setResizable(false);
         /*----------------------*/
+
+        Path path = Paths.get("");
+        path = path.toAbsolutePath();
+        String cesta = path.toString();
+
+        //Naplnění regálu zbožím
+        try {
+            File obj = new File(cesta + "/data/goods.txt");
+            Scanner myScanner = new Scanner(obj);
+            while (myScanner.hasNextLine()) {
+                String data = myScanner.nextLine();
+                String str = data.toString();
+                String[] zbozi = str.split(";");
+
+                String nazev = zbozi[0];
+                String pocet = zbozi[1];
+
+                shelfList.add(nazev);
+                Shelfs regal = new Shelfs(nazev);
+                goodsInShelfs.add(regal);
+                elem.add(regal);
+            }
+            myScanner.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Nastala chyba pri otevirani souboru 'goods.txt'.");
+            e.printStackTrace();
+        }
+
+       // controller.setElements(elem);
     }
 
-
+/*
     public static void main(String[] args) {
 
         //Zakladni operace s objekty. Jen ciste textovy vystup.
@@ -50,5 +105,5 @@ public class Main extends Application{
 
         launch(args);
     }
-
+*/
 }
