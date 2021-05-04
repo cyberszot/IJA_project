@@ -6,7 +6,7 @@
  *
  * file: Main.java
  */
-package cz.vut.fit.ija21;
+package cz.vut.fit.ija21.main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

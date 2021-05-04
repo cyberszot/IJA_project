@@ -6,7 +6,7 @@
  * file: Goods.java
  */
 
-package cz.vut.fit.ija21;
+package cz.vut.fit.ija21.main;
 
 import java.time.LocalDate;
 

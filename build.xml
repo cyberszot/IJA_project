@@ -29,7 +29,7 @@
         <mkdir dir="dest"/>
         <jar destfile="dest/ija-app.jar" basedir="build">
             <manifest>
-                <attribute name="Main-Class" value="cz.vut.fit.ija21.Main"/>
+                <attribute name="Main-Class" value="cz.vut.fit.ija21.main.Main"/>
             </manifest>
             <zipgroupfileset dir="lib" includes="**/*.jar"/>
             <fileset file="data/sample.fxml"/>

@@ -6,9 +6,12 @@
  *
  * file: Controller.java
  */
-package cz.vut.fit.ija21;
+package cz.vut.fit.ija21.controller;
 
 
+import cz.vut.fit.ija21.main.Goods;
+import cz.vut.fit.ija21.main.GoodsItem;
+import cz.vut.fit.ija21.main.StoreGoods;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

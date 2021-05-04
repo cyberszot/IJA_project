@@ -6,7 +6,7 @@
  * file: GoodsShelf.java
  */
 
-package cz.vut.fit.ija21;
+package cz.vut.fit.ija21.main;
 
 public interface GoodsShelf {
     void put(GoodsItem var1);
