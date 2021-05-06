@@ -60,34 +60,8 @@ public class Controller {
         help.show();
         help.setResizable(false);
     }
-    /*
-        private List<Canvas> elements = new ArrayList<>();
 
-        public void setElements(List<Canvas> elements)
-        {
-            this.elements = elements;
 
-            set_shelfs();
-        }
-
-        @FXML
-        private void set_shelfs()
-        {
-            ObservableList<String> items = FXCollections.observableArrayList();
-            for(Shelfs s : Main.get_goodsInShelfs())
-            {
-                items.add(s.getId());
-            }
-
-            types.setItems(items);
-        }
-
-       // public void naplnSklad() {
-       //     String Shelfid =
-        //    System.out.println(Shelfid);
-       // }
-
-    */
     public void onClickEvent(MouseEvent mouseEvent) {
         Integer shelfID = Integer.valueOf(mouseEvent.getPickResult().getIntersectedNode().getId()); //returns JUST the id of the object that was clicked
         if(!shelfID.equals("null")) {
@@ -155,46 +129,6 @@ public class Controller {
 
     public void handlePozadavek3(MouseEvent mouseEvent) {
     }
-
-/*
-    @FXML
-    public void set_label_time()
-    {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss", Locale.GERMANY);
-        LocalTime time = this.time;
-        String f = formatter.format(time);
-
-        Platform.runLater(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                time_label.setText(f);
-            }
-        });
-    }
-
-    @FXML
-    public void set_time()
-    {
-        String str_time = time_set_hh_text.getText() + ":" + time_set_mm_text.getText() + ":00";
-        try
-        {
-            LocalTime s_time = LocalTime.parse(str_time);
-            this.time = s_time;
-        }
-        catch (DateTimeParseException e)
-        {
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Zadany cas neodpovida formatu HH:MM");
-            alert.showAndWait();
-        }
-    }
-
-    public void start(float time_c)
-    {
-
-    }
-    */
 
 }
 

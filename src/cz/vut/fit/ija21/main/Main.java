@@ -94,8 +94,9 @@ public class Main extends Application{
         //zpracovani pozadavku
         int pocet = 0;
         try {
+            // V púroměnné pozadavekFile je ulozen nazev souboru s pozadavkem.
             String pozadavekFile = "pozadavky1.txt";
-            File obj = new File(cesta + "/data/pozadavky1.txt");
+            File obj = new File(cesta + "/data/"+pozadavekFile);
             Scanner scannerPozadavek = new Scanner(obj);
             while (scannerPozadavek.hasNextLine()) {
                 pocet++;
@@ -113,17 +114,15 @@ public class Main extends Application{
             e.printStackTrace();
         }
 
+        //Uložení id, dle zadaneho zbozi v požadavku.
         int[] indexGoodsRequest = new int[pocet];
         int u = 0;
         int c = 0;
         // iterating over an array
         for (String i : goodsInShelfs) {
-           // System.out.println(i);
             c++;
             for (String j : nameGoodsRequest) {
-              //  System.out.println(j);
                 if (i.equals(j)) {
-                  // System.out.println("JOP");
                     indexGoodsRequest[u] = c;
                     u++;
                 }
@@ -131,6 +130,8 @@ public class Main extends Application{
         }
         System.out.println(nameGoodsRequest);
         System.out.println(Arrays.toString(indexGoodsRequest));
+
+
 
 
 
