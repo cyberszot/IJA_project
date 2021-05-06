@@ -6,19 +6,20 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<VBox fx:controller="cz.vut.fit.ija21.controller.newPozadavekController" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="javafx:com.sun.javafx.tools.ant">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.vut.fit.ija21.controller.newPozadavekController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="230.0" prefWidth="379.0" VBox.vgrow="ALWAYS">
          <children>
-            <ListView fx:id="goodsList" layoutX="14.0" layoutY="14.0" prefHeight="206.0" prefWidth="134.0" />
-            <Button layoutX="276.0" layoutY="61.0" mnemonicParsing="false" text="Pridat" />
-            <Button layoutX="216.0" layoutY="155.0" mnemonicParsing="false" text="Dokoncit" />
+            <ListView fx:id="goodsList" layoutX="14.0" layoutY="14.0" onMouseClicked="#gooodsSelected" prefHeight="206.0" prefWidth="134.0" />
+            <Button layoutX="280.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#addPozadavek" text="Pridat" />
+            <Button fx:id="finalise" layoutX="216.0" layoutY="155.0" mnemonicParsing="false" onMouseClicked="#zpracujPozadavek" text="Dokoncit" />
             <Label layoutX="165.0" layoutY="65.0" text="Mnozstvi:" />
-            <TextField layoutX="223.0" layoutY="61.0" prefHeight="25.0" prefWidth="51.0" />
+            <TextField fx:id="goodsCount" layoutX="223.0" layoutY="61.0" prefHeight="25.0" prefWidth="51.0" />
+            <Label layoutX="177.0" layoutY="33.0" text="Zbozi:" />
+            <Text fx:id="selectedGoods" layoutX="223.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="125.13671875" />
          </children>
     </AnchorPane>
   </children>
 </VBox>
-
-
