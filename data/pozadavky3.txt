@@ -1,0 +1,6 @@
+Papir;5
+Alobal;7
+Lopata;1
+Dzem;7
+Cihly;4
+Uhli;10
