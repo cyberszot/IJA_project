@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.*;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -29,7 +30,13 @@ public class Main extends Application{
     public static List<Canvas> elem = new ArrayList<>();
     public static List<String> goodsInShelfs = new ArrayList<String>();
     public static List<String> goodsInShelfsCount = new ArrayList<String>();
-  //  public static List<Shelfs> get_goodsInShelfs(){
+
+    public static List<String> nameGoodsRequest = new ArrayList<String>();
+    public static List<String> countGoodsRequest = new ArrayList<String>();
+
+
+
+    //  public static List<Shelfs> get_goodsInShelfs(){
   //      return goodsInShelfs;
   //  }
     public static List<Canvas> get_elements(){
@@ -74,20 +81,9 @@ public class Main extends Application{
                 String nazev = zbozi[0];
                 String pocet = zbozi[1];
 
-              //  Goods goods = new StoreGoods(nazev);
-               //System.out.println(goods.getName());
-              //System.out.println(goods.size());
+                goodsInShelfs.add(nazev);
+                goodsInShelfsCount.add(pocet);
 
-               goodsInShelfs.add(nazev);
-               goodsInShelfsCount.add(pocet);
-
-         //       shelfList.add(nazev);
-         //       shelfList.add(pocet);
-         //       Shelfs regal = new Shelfs(nazev, pocet);
-         //       goodsInShelfs.add(regal.getId());
-         //       goodsInShelfs.
-
-               //elem.add(regal);
             }
             myScanner.close();
         } catch (FileNotFoundException e) {
@@ -95,7 +91,49 @@ public class Main extends Application{
             e.printStackTrace();
         }
 
-       // controller.setElements(elem);
+        //zpracovani pozadavku
+        int pocet = 0;
+        try {
+            String pozadavekFile = "pozadavky1.txt";
+            File obj = new File(cesta + "/data/pozadavky1.txt");
+            Scanner scannerPozadavek = new Scanner(obj);
+            while (scannerPozadavek.hasNextLine()) {
+                pocet++;
+                String data = scannerPozadavek.nextLine();
+                String str = data.toString();
+                String[] zboziP = str.split(";");
+
+                nameGoodsRequest.add(zboziP[0]);
+                countGoodsRequest.add(zboziP[1]);
+
+            }
+            scannerPozadavek.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Nastala chyba pri otevirani souboru 'goods.txt'.");
+            e.printStackTrace();
+        }
+
+        int[] indexGoodsRequest = new int[pocet];
+        int u = 0;
+        int c = 0;
+        // iterating over an array
+        for (String i : goodsInShelfs) {
+           // System.out.println(i);
+            c++;
+            for (String j : nameGoodsRequest) {
+              //  System.out.println(j);
+                if (i.equals(j)) {
+                  // System.out.println("JOP");
+                    indexGoodsRequest[u] = c;
+                    u++;
+                }
+            }
+        }
+        System.out.println(nameGoodsRequest);
+        System.out.println(Arrays.toString(indexGoodsRequest));
+
+
+
     }
 
     public static void main(String[] args) {
