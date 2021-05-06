@@ -95,7 +95,7 @@ public class Controller {
 
             Goods goods1 = new StoreGoods(Main.goodsInShelfs.get(shelfID-1));
             Label goodsTypeText = new Label("typ zbozi: " + goods1.getName());
-            Label goodsAmountText = new Label("mnozstvi: " + goods1.size());
+            Label goodsAmountText = new Label("mnozstvi: " + Main.goodsInShelfsCount.get(shelfID-1));
             VBox container = new VBox(goodsTypeText, goodsAmountText);
             container.setSpacing(15);
             container.setPadding(new Insets(15));
