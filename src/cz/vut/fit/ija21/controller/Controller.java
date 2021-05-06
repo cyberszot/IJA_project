@@ -25,6 +25,12 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Scanner;
+
 
 /**
  * Ovladani uzivatelskeho rozhrani
@@ -112,6 +118,35 @@ public class Controller {
 
         }
     }
+
+    public void handleResetButton(MouseEvent mouseEvent) {
+        Main.goodsInShelfs.clear();
+        Main.goodsInShelfsCount.clear();
+
+        Path path = Paths.get("");
+        path = path.toAbsolutePath();
+        String cesta = path.toString();
+
+        try {
+            File obj = new File(cesta + "/data/goods.txt");
+            Scanner myScanner = new Scanner(obj);
+            while (myScanner.hasNextLine()) {
+                String data = myScanner.nextLine();
+                String[] zbozi = data.split(";");
+
+                String nazev = zbozi[0];
+                String pocet = zbozi[1];
+
+                Main.goodsInShelfs.add(nazev);
+                Main.goodsInShelfsCount.add(pocet);
+            }
+            myScanner.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Nastala chyba pri otevirani souboru 'goods.txt'.");
+            e.printStackTrace();
+        }
+    }
+
 /*
     @FXML
     public void set_label_time()
