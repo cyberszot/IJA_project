@@ -31,6 +31,7 @@
             <zipgroupfileset dir="lib" includes="**/*.jar"/>
             <fileset file="data/sample.fxml"/>
             <fileset file="data/help.fxml"/>
+            <fileset file="data/newpozadavek.fxml"/>
         </jar>
     </target>
 

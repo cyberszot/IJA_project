@@ -67,7 +67,8 @@ public class Controller {
         help.show();
         help.setResizable(false);
     }
-    @FXML public void handleMakePozadavek(MouseEvent mouseEvent) throws IOException {
+
+    @FXML public void handleMakePozadavek(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("newpozadavek.fxml"));
         Stage newPozadavek = new Stage();
         newPozadavek.setTitle("Vytvorit novy pozadavek");
@@ -161,11 +162,6 @@ public class Controller {
     }
 
     public void handlePozadavek3(MouseEvent mouseEvent) {
-        pozadavekFile = "pozadavky3.txt";
-        zpracujPozadavek();
-    }
-
-    public void userPozadavek(MouseEvent mouseEvent) {
         pozadavekFile = "pozadavky3.txt";
         zpracujPozadavek();
     }

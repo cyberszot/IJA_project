@@ -16,7 +16,8 @@
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
-            <MenuItem mnemonicParsing="false" onAction="#handleQuitButtonAction" text="Quit" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleQuitButtonAction" text="Quit" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleMakePozadavek" text="Nový požadavek uživatele" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
@@ -220,7 +221,6 @@
                   <Button id="null" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" onMouseClicked="#handlePozadavek3" text="3" />
                </items>
             </ToolBar>
-            <Button id="null" layoutX="116.0" layoutY="367.0" mnemonicParsing="false" onMouseClicked="#handleMakePozadavek" text="Pozadavek" />
       </children>
     </AnchorPane>
   </children>
