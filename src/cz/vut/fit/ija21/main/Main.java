@@ -28,6 +28,7 @@ public class Main extends Application{
 
     public static List<Canvas> elem = new ArrayList<>();
     public static List<String> goodsInShelfs = new ArrayList<String>();
+    public static List<String> goodsInShelfsCount = new ArrayList<String>();
   //  public static List<Shelfs> get_goodsInShelfs(){
   //      return goodsInShelfs;
   //  }
@@ -78,6 +79,7 @@ public class Main extends Application{
               //System.out.println(goods.size());
 
                goodsInShelfs.add(nazev);
+               goodsInShelfsCount.add(pocet);
 
          //       shelfList.add(nazev);
          //       shelfList.add(pocet);
