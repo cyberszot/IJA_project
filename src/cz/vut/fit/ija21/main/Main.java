@@ -8,16 +8,13 @@
  */
 package cz.vut.fit.ija21.main;
 
-import cz.vut.fit.ija21.controller.Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 import java.util.ArrayList;
-import java.time.LocalDate;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.*;
@@ -30,10 +27,10 @@ import java.util.Scanner;
 public class Main extends Application{
 
     public static List<Canvas> elem = new ArrayList<>();
-    public static List<Shelfs> goodsInShelfs = new ArrayList<>();
-    public static List<Shelfs> get_goodsInShelfs(){
-        return goodsInShelfs;
-    }
+    public static List<String> goodsInShelfs = new ArrayList<String>();
+  //  public static List<Shelfs> get_goodsInShelfs(){
+  //      return goodsInShelfs;
+  //  }
     public static List<Canvas> get_elements(){
         return elem;
     }
@@ -49,7 +46,9 @@ public class Main extends Application{
           // Scene scene = new Scene(root, 640, 420);
         primaryStage.setTitle("IJAProject");
        primaryStage.setScene(new Scene(root, 640, 420));
+
         primaryStage.show();
+
 
      //   Controller controller = ld.getController();
 
@@ -60,6 +59,7 @@ public class Main extends Application{
         Path path = Paths.get("");
         path = path.toAbsolutePath();
         String cesta = path.toString();
+
 
         //Naplnění regálu zbožím
         try {
@@ -73,10 +73,19 @@ public class Main extends Application{
                 String nazev = zbozi[0];
                 String pocet = zbozi[1];
 
-                shelfList.add(nazev);
-                Shelfs regal = new Shelfs(nazev);
-                goodsInShelfs.add(regal);
-                elem.add(regal);
+              //  Goods goods = new StoreGoods(nazev);
+               //System.out.println(goods.getName());
+              //System.out.println(goods.size());
+
+               goodsInShelfs.add(nazev);
+
+         //       shelfList.add(nazev);
+         //       shelfList.add(pocet);
+         //       Shelfs regal = new Shelfs(nazev, pocet);
+         //       goodsInShelfs.add(regal.getId());
+         //       goodsInShelfs.
+
+               //elem.add(regal);
             }
             myScanner.close();
         } catch (FileNotFoundException e) {
@@ -87,9 +96,10 @@ public class Main extends Application{
        // controller.setElements(elem);
     }
 
-/*
     public static void main(String[] args) {
 
+
+        /*
         //Zakladni operace s objekty. Jen ciste textovy vystup.
         Goods goods1 = new StoreGoods("Stul");
         Goods goods2 = new StoreGoods("Zidle");
@@ -102,8 +112,9 @@ public class Main extends Application{
         System.out.println("Pocet kusu v seznamu zbozi po odtraneni jednoho kusu: "+ goods1.size());
 
         System.out.println("Zbozi "+ goods1.getName() +" je prazdne: "+ goods1.empty());
+        */
 
         launch(args);
     }
-*/
+
 }

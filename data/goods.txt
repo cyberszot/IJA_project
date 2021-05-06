@@ -1,4 +1,4 @@
-Stul;12
+Stolik;12
 Kuchynska linka;15
 Konferenci stul;17
 Kreslo;12

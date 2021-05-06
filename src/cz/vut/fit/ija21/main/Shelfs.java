@@ -11,10 +11,7 @@ public class Shelfs implements Canvas{
     private List<Shape> gui = new ArrayList<>();
 
 
-    /**
-     * Setter pro nastavení jména regálu
-     * @param id Jméno ulice
-     */
+
     public Shelfs(java.lang.String id){
 
         Text nazev = new Text(id);

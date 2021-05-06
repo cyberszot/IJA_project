@@ -11,8 +11,6 @@ package cz.vut.fit.ija21.controller;
 
 import cz.vut.fit.ija21.main.*;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,10 +25,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
 
 /**
  * Ovladani uzivatelskeho rozhrani
@@ -41,6 +35,13 @@ public class Controller {
     private ChoiceBox types;
     @FXML
     private Pane content;
+
+    @FXML private Label time;
+
+    private int minute;
+    private int hour;
+    private int second;
+
 
     @FXML protected void handleQuitButtonAction(ActionEvent event){
         Platform.exit();
@@ -53,49 +54,103 @@ public class Controller {
         help.show();
         help.setResizable(false);
     }
+    /*
+        private List<Canvas> elements = new ArrayList<>();
 
-    private List<Canvas> elements = new ArrayList<>();
-
-    public void setElements(List<Canvas> elements)
-    {
-        this.elements = elements;
-
-        set_shelfs();
-    }
-
-    @FXML
-    private void set_shelfs()
-    {
-        ObservableList<String> items = FXCollections.observableArrayList();
-        for(Shelfs s : Main.get_goodsInShelfs())
+        public void setElements(List<Canvas> elements)
         {
-            items.add(s.getId());
+            this.elements = elements;
+
+            set_shelfs();
         }
 
-        types.setItems(items);
-    }
+        @FXML
+        private void set_shelfs()
+        {
+            ObservableList<String> items = FXCollections.observableArrayList();
+            for(Shelfs s : Main.get_goodsInShelfs())
+            {
+                items.add(s.getId());
+            }
 
-    // ilustracni data
-    Goods goods1 = new StoreGoods("Stul");
-    GoodsItem itm11 = goods1.newItem(LocalDate.of(2021, 1, 5));
+            types.setItems(items);
+        }
 
+       // public void naplnSklad() {
+       //     String Shelfid =
+        //    System.out.println(Shelfid);
+       // }
+
+    */
     public void onClickEvent(MouseEvent mouseEvent) {
-        String shelfID = mouseEvent.getPickResult().getIntersectedNode().getId(); //returns JUST the id of the object that was clicked
+        Integer shelfID = Integer.valueOf(mouseEvent.getPickResult().getIntersectedNode().getId()); //returns JUST the id of the object that was clicked
         if(!shelfID.equals("null")) {
             Stage shelfWindow = new Stage();
             shelfWindow.setTitle("shelf id: " + shelfID);
+            // ilustracni data
+
+            Goods goods2 = new StoreGoods("Zidlicka");
+            //GoodsItem itm11 = goods1.newItem(LocalDate.of(2021, 1, 5));
+
+
+            Goods goods1 = new StoreGoods(Main.goodsInShelfs.get(shelfID-1));
             Label goodsTypeText = new Label("typ zbozi: " + goods1.getName());
             Label goodsAmountText = new Label("mnozstvi: " + goods1.size());
-
             VBox container = new VBox(goodsTypeText, goodsAmountText);
             container.setSpacing(15);
             container.setPadding(new Insets(15));
             container.setAlignment(Pos.CENTER_LEFT);
 
+
+
             shelfWindow.setScene(new Scene(container, 250, 100));
             shelfWindow.show();
             shelfWindow.setResizable(false);
+
+
+
+
         }
     }
+/*
+    @FXML
+    public void set_label_time()
+    {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss", Locale.GERMANY);
+        LocalTime time = this.time;
+        String f = formatter.format(time);
+
+        Platform.runLater(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                time_label.setText(f);
+            }
+        });
+    }
+
+    @FXML
+    public void set_time()
+    {
+        String str_time = time_set_hh_text.getText() + ":" + time_set_mm_text.getText() + ":00";
+        try
+        {
+            LocalTime s_time = LocalTime.parse(str_time);
+            this.time = s_time;
+        }
+        catch (DateTimeParseException e)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Zadany cas neodpovida formatu HH:MM");
+            alert.showAndWait();
+        }
+    }
+
+    public void start(float time_c)
+    {
+
+    }
+    */
+
 }
 
