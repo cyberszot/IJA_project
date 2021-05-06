@@ -10,12 +10,14 @@ package cz.vut.fit.ija21.controller;
 
 
 import cz.vut.fit.ija21.main.*;
+import javafx.animation.PathTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -25,36 +27,86 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.*;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
+
+import java.net.URL;
+
+import javafx.animation.*;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.util.Duration;
 
 
 /**
  * Ovladani uzivatelskeho rozhrani
  * @author Rene Szotkowski
  */
-public class Controller {
-    @FXML
-    private ChoiceBox types;
-    @FXML
-    private Pane content;
+public class Controller implements Initializable {
 
-    @FXML private Label time;
+    public static List<Integer> indexGoodsRequest = new ArrayList<>();
 
-    private int minute;
-    private int hour;
-    private int second;
-    // V púroměnné pozadavekFile je ulozen nazev souboru s pozadavkem.
+    @FXML
+    private Circle vuz;
+
+    // V proměnné pozadavekFile je uložen název souboru s požadavky.
     String pozadavekFile;
 
+
+    public void initialize(URL location, ResourceBundle resources) {
+        // TODO Auto-generated method stub
+
+        indexGoodsRequest.add(32);
+        indexGoodsRequest.add(8);
+
+        Collections.sort(indexGoodsRequest);
+        Polyline polyline = new Polyline();
+        polyline.getPoints().addAll(new Double[]{
+                92.0, 10.0,
+        });
+
+        for (int i = 0; i < indexGoodsRequest.size(); i++) {
+            if (indexGoodsRequest.get(i) < 20) {
+                System.out.println(indexGoodsRequest.get(i));
+                polyline.getPoints().addAll(new Double[]{
+                        92.00,
+                });polyline.getPoints().addAll(new Double[]{
+                        320.0,
+                });
+            }
+            if (indexGoodsRequest.get(i) > 20) {
+                System.out.println(indexGoodsRequest.get(i));
+                polyline.getPoints().addAll(new Double[]{
+                        92.00,
+                });polyline.getPoints().addAll(new Double[]{
+                        180.0,
+                        150.0, 180.0,
+                });
+            }
+        }
+
+
+
+        PathTransition pathTransition = new PathTransition();
+        pathTransition.setDuration(Duration.seconds(5));
+       // transition.setDuration(Duration.seconds(4));
+        pathTransition.setNode(vuz);
+        pathTransition.setPath(polyline);
+       // transition.setFromX(92);
+      //  transition.setToY(100);
+        pathTransition.play();
+    }
 
     @FXML protected void handleQuitButtonAction(ActionEvent event){
         Platform.exit();
@@ -90,7 +142,7 @@ public class Controller {
             Stage shelfWindow = new Stage();
             shelfWindow.setTitle("shelf id: " + shelfID);
 
-            Label goodsTypeText = new Label("Typ zboží: " + Main.goodsInShelfs.get(shelfID));
+            Label goodsTypeText = new Label("Zboží: " + Main.goodsInShelfs.get(shelfID));
             Label goodsAmountText = new Label("Počet kusů:: " + Main.goodsInShelfsCount.get(shelfID));
 
             VBox container = new VBox(goodsTypeText, goodsAmountText);
@@ -174,7 +226,6 @@ public class Controller {
         }
 
         //Uložení id, dle zadaneho zbozi v požadavku.
-        int[] indexGoodsRequest = new int[pocet];
         int u = 0;
         int c = 0;
         // iterating over an array
@@ -182,13 +233,13 @@ public class Controller {
             c++;
             for (String j : Main.nameGoodsRequest) {
                 if (i.equals(j)) {
-                    indexGoodsRequest[u] = c;
+                    indexGoodsRequest.add(c);       //TODO
                     u++;
                 }
             }
         }
         System.out.println(Main.nameGoodsRequest);
-        System.out.println(Arrays.toString(indexGoodsRequest));
+        System.out.println(indexGoodsRequest);
     }
 
     public void start(float time_c)
