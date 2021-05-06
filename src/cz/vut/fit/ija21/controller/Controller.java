@@ -11,6 +11,8 @@ package cz.vut.fit.ija21.controller;
 
 import cz.vut.fit.ija21.main.*;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +21,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -27,6 +30,7 @@ import javafx.scene.Parent;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -63,32 +67,58 @@ public class Controller {
         help.show();
         help.setResizable(false);
     }
+    @FXML public void handleMakePozadavek(MouseEvent mouseEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("newpozadavek.fxml"));
+        Stage newPozadavek = new Stage();
+        newPozadavek.setTitle("Vytvorit novy pozadavek");
+        newPozadavek.setScene(new Scene(root,420,260));
+        newPozadavek.show();
+    }
+    /*
+        private List<Canvas> elements = new ArrayList<>();
 
+        public void setElements(List<Canvas> elements)
+        {
+            this.elements = elements;
 
+            set_shelfs();
+        }
+
+        @FXML
+        private void set_shelfs()
+        {
+            ObservableList<String> items = FXCollections.observableArrayList();
+            for(Shelfs s : Main.get_goodsInShelfs())
+            {
+                items.add(s.getId());
+            }
+
+            types.setItems(items);
+        }
+
+       // public void naplnSklad() {
+       //     String Shelfid =
+        //    System.out.println(Shelfid);
+       // }
+
+    */
     public void onClickEvent(MouseEvent mouseEvent) {
         Integer shelfID = Integer.valueOf(mouseEvent.getPickResult().getIntersectedNode().getId()); //returns JUST the id of the object that was clicked
         if(!shelfID.equals("null")) {
             Stage shelfWindow = new Stage();
             shelfWindow.setTitle("shelf id: " + shelfID);
-            // ilustracni data
 
-            Goods goods1 = new StoreGoods(Main.goodsInShelfs.get(shelfID));
-            Label goodsTypeText = new Label("Typ zboží: " + goods1.getName());
-            Label goodsAmountText = new Label("Počet kusů: " + Main.goodsInShelfsCount.get(shelfID));
+            Label goodsTypeText = new Label("typ zbozi: " + Main.goodsInShelfs.get(shelfID));
+            Label goodsAmountText = new Label("mnozstvi: " + Main.goodsInShelfsCount.get(shelfID));
+
             VBox container = new VBox(goodsTypeText, goodsAmountText);
             container.setSpacing(15);
             container.setPadding(new Insets(15));
             container.setAlignment(Pos.CENTER_LEFT);
 
-
-
             shelfWindow.setScene(new Scene(container, 250, 100));
             shelfWindow.show();
             shelfWindow.setResizable(false);
-
-
-
-
         }
     }
 
@@ -179,7 +209,10 @@ public class Controller {
         System.out.println(Arrays.toString(indexGoodsRequest));
     }
 
+    public void start(float time_c)
+    {
 
+    }
 
 
 }
