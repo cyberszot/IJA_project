@@ -10,14 +10,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
+<?import javafx.scene.shape.Circle?>
+
 <VBox prefHeight="420.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.vut.fit.ija21.controller.Controller">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
+                <MenuItem mnemonicParsing="false" onAction="#handleMakePozadavek" text="Nový požadavek uživatele" />
                   <MenuItem mnemonicParsing="false" onAction="#handleQuitButtonAction" text="Quit" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleMakePozadavek" text="Nový požadavek uživatele" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
@@ -192,18 +194,16 @@
             <Rectangle id="158" arcHeight="5.0" arcWidth="5.0" fill="#f5b235" height="25.0" layoutX="564.0" layoutY="277.0" stroke="BLACK" strokeType="INSIDE" width="16.0" />
             <Rectangle id="159" arcHeight="5.0" arcWidth="5.0" fill="#f5b235" height="25.0" layoutX="564.0" layoutY="302.0" stroke="BLACK" strokeType="INSIDE" width="16.0" />
             <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#59afff" height="348.0" layoutX="84.0" layoutY="14.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
-            <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#59afff" height="16.0" layoutX="84.0" layoutY="346.0" stroke="#59afff" strokeType="INSIDE" width="471.0" />
             <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#59afff" height="348.0" layoutX="149.0" layoutY="14.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
             <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#59afff" height="348.0" layoutX="213.0" layoutY="14.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
             <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#59afff" height="348.0" layoutX="283.0" layoutY="14.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
-            <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#59afff" height="16.0" layoutX="84.0" layoutY="14.0" stroke="#59afff" strokeType="INSIDE" width="471.0" />
             <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#59afff" height="16.0" layoutX="84.0" layoutY="172.0" stroke="#59afff" strokeType="INSIDE" width="471.0" />
             <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#59afff" height="348.0" layoutX="344.0" layoutY="14.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
             <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#59afff" height="348.0" layoutX="409.0" layoutY="14.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
             <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#59afff" height="348.0" layoutX="475.0" layoutY="14.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
             <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#59afff" height="348.0" layoutX="540.0" layoutY="14.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
             <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#ffdf85" height="27.0" layoutX="75.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="34.0" />
-            <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="red" height="20.0" layoutX="100.0" layoutY="12.0" stroke="BLACK" strokeType="INSIDE" onMouseClicked="#handleObsahVoziku" width="20.0" />
+            <Circle fx:id="vuz" radius="13.0" fill="red" stroke="BLACK" strokeType="INSIDE" onMouseClicked="#handleObsahVoziku" />
             <ToolBar id="null" layoutX="391.0" layoutY="362.0" prefHeight="35.0" prefWidth="154.0">
               <items>
                 <Button id="null" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="1" />
