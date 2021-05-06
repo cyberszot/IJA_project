@@ -71,38 +71,19 @@ public class Controller {
     @FXML public void handleMakePozadavek(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("newpozadavek.fxml"));
         Stage newPozadavek = new Stage();
-        newPozadavek.setTitle("Vytvorit novy pozadavek");
+        newPozadavek.setTitle("Vytvoř nový požadavek");
         newPozadavek.setScene(new Scene(root,420,260));
         newPozadavek.show();
     }
-    /*
-        private List<Canvas> elements = new ArrayList<>();
 
-        public void setElements(List<Canvas> elements)
-        {
-            this.elements = elements;
+    @FXML public void handleObsahVoziku(MouseEvent mouseEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("obsahVoziku.fxml"));
+        Stage newPozadavek = new Stage();
+        newPozadavek.setTitle("Aktuální obsah vozíku");
+        newPozadavek.setScene(new Scene(root,420,260));
+        newPozadavek.show();
+    }
 
-            set_shelfs();
-        }
-
-        @FXML
-        private void set_shelfs()
-        {
-            ObservableList<String> items = FXCollections.observableArrayList();
-            for(Shelfs s : Main.get_goodsInShelfs())
-            {
-                items.add(s.getId());
-            }
-
-            types.setItems(items);
-        }
-
-       // public void naplnSklad() {
-       //     String Shelfid =
-        //    System.out.println(Shelfid);
-       // }
-
-    */
     public void onClickEvent(MouseEvent mouseEvent) {
         Integer shelfID = Integer.valueOf(mouseEvent.getPickResult().getIntersectedNode().getId()); //returns JUST the id of the object that was clicked
         if(!shelfID.equals("null")) {
