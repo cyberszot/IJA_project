@@ -135,6 +135,11 @@ public class Controller {
         zpracujPozadavek();
     }
 
+    public void userPozadavek(MouseEvent mouseEvent) {
+        pozadavekFile = "pozadavky3.txt";
+        zpracujPozadavek();
+    }
+
     public void zpracujPozadavek() {
         Path path = Paths.get("");
         path = path.toAbsolutePath();

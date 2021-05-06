@@ -220,7 +220,7 @@
                   <Button id="null" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" onMouseClicked="#handlePozadavek3" text="3" />
                </items>
             </ToolBar>
-            <Button id="null" layoutX="116.0" layoutY="367.0" mnemonicParsing="false" text="Pozadavek" />
+            <Button id="null" layoutX="116.0" layoutY="367.0" mnemonicParsing="false" onMouseClicked="#userPozadavek" text="Chci svůj požadavek" />
       </children>
     </AnchorPane>
   </children>
