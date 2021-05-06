@@ -93,9 +93,9 @@ public class Controller {
             //GoodsItem itm11 = goods1.newItem(LocalDate.of(2021, 1, 5));
 
 
-            Goods goods1 = new StoreGoods(Main.goodsInShelfs.get(shelfID-1));
+            Goods goods1 = new StoreGoods(Main.goodsInShelfs.get(shelfID));
             Label goodsTypeText = new Label("typ zbozi: " + goods1.getName());
-            Label goodsAmountText = new Label("mnozstvi: " + Main.goodsInShelfsCount.get(shelfID-1));
+            Label goodsAmountText = new Label("mnozstvi: " + Main.goodsInShelfsCount.get(shelfID));
             VBox container = new VBox(goodsTypeText, goodsAmountText);
             container.setSpacing(15);
             container.setPadding(new Insets(15));
