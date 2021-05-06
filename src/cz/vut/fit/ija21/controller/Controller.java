@@ -148,6 +148,8 @@ public class Controller {
     }
 
     public void zpracujPozadavek() {
+        Main.nameGoodsRequest.clear();
+        Main.countGoodsRequest.clear();
         Path path = Paths.get("");
         path = path.toAbsolutePath();
         String cesta = path.toString();
