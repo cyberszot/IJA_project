@@ -90,8 +90,8 @@ public class Controller {
             Stage shelfWindow = new Stage();
             shelfWindow.setTitle("shelf id: " + shelfID);
 
-            Label goodsTypeText = new Label("typ zbozi: " + Main.goodsInShelfs.get(shelfID));
-            Label goodsAmountText = new Label("mnozstvi: " + Main.goodsInShelfsCount.get(shelfID));
+            Label goodsTypeText = new Label("Typ zboží: " + Main.goodsInShelfs.get(shelfID));
+            Label goodsAmountText = new Label("Počet kusů:: " + Main.goodsInShelfsCount.get(shelfID));
 
             VBox container = new VBox(goodsTypeText, goodsAmountText);
             container.setSpacing(15);
