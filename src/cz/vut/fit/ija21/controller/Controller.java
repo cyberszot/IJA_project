@@ -147,6 +147,15 @@ public class Controller {
         }
     }
 
+    public void handlePozadavek1(MouseEvent mouseEvent) {
+    }
+
+    public void handlePozadavek2(MouseEvent mouseEvent) {
+    }
+
+    public void handlePozadavek3(MouseEvent mouseEvent) {
+    }
+
 /*
     @FXML
     public void set_label_time()
