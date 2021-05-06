@@ -29,6 +29,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -47,6 +48,8 @@ public class Controller {
     private int minute;
     private int hour;
     private int second;
+    // V púroměnné pozadavekFile je ulozen nazev souboru s pozadavkem.
+    String pozadavekFile;
 
 
     @FXML protected void handleQuitButtonAction(ActionEvent event){
@@ -69,13 +72,9 @@ public class Controller {
             shelfWindow.setTitle("shelf id: " + shelfID);
             // ilustracni data
 
-            Goods goods2 = new StoreGoods("Zidlicka");
-            //GoodsItem itm11 = goods1.newItem(LocalDate.of(2021, 1, 5));
-
-
             Goods goods1 = new StoreGoods(Main.goodsInShelfs.get(shelfID));
-            Label goodsTypeText = new Label("typ zbozi: " + goods1.getName());
-            Label goodsAmountText = new Label("mnozstvi: " + Main.goodsInShelfsCount.get(shelfID));
+            Label goodsTypeText = new Label("Typ zboží: " + goods1.getName());
+            Label goodsAmountText = new Label("Počet kusů: " + Main.goodsInShelfsCount.get(shelfID));
             VBox container = new VBox(goodsTypeText, goodsAmountText);
             container.setSpacing(15);
             container.setPadding(new Insets(15));
@@ -122,13 +121,66 @@ public class Controller {
     }
 
     public void handlePozadavek1(MouseEvent mouseEvent) {
+        pozadavekFile = "pozadavky1.txt";
+        zpracujPozadavek();
     }
 
     public void handlePozadavek2(MouseEvent mouseEvent) {
+        pozadavekFile = "pozadavky2.txt";
+        zpracujPozadavek();
     }
 
     public void handlePozadavek3(MouseEvent mouseEvent) {
+        pozadavekFile = "pozadavky3.txt";
+        zpracujPozadavek();
     }
+
+    public void zpracujPozadavek() {
+        Path path = Paths.get("");
+        path = path.toAbsolutePath();
+        String cesta = path.toString();
+
+        int pocet = 0;
+        try {
+
+            File obj = new File(cesta + "/data/"+pozadavekFile);
+            Scanner scannerPozadavek = new Scanner(obj);
+            while (scannerPozadavek.hasNextLine()) {
+                pocet++;
+                String data = scannerPozadavek.nextLine();
+                String str = data.toString();
+                String[] zboziP = str.split(";");
+
+                Main.nameGoodsRequest.add(zboziP[0]);
+                Main.countGoodsRequest.add(zboziP[1]);
+
+            }
+            scannerPozadavek.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Nastala chyba pri otevirani souboru s pozadavky.");
+            e.printStackTrace();
+        }
+
+        //Uložení id, dle zadaneho zbozi v požadavku.
+        int[] indexGoodsRequest = new int[pocet];
+        int u = 0;
+        int c = 0;
+        // iterating over an array
+        for (String i : Main.goodsInShelfs) {
+            c++;
+            for (String j : Main.nameGoodsRequest) {
+                if (i.equals(j)) {
+                    indexGoodsRequest[u] = c;
+                    u++;
+                }
+            }
+        }
+        System.out.println(Main.nameGoodsRequest);
+        System.out.println(Arrays.toString(indexGoodsRequest));
+    }
+
+
+
 
 }
 
