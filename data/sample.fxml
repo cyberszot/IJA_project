@@ -215,9 +215,9 @@
             <Button id="null" layoutX="556.0" layoutY="367.0" mnemonicParsing="false" onMouseClicked="#handleResetButton" text="RESET" />
             <ToolBar id="null" layoutX="15.0" layoutY="362.0" prefHeight="35.0" prefWidth="96.0">
                <items>
-                  <Button id="null" mnemonicParsing="false" onMouseClicked="#handlePozadavek1" prefHeight="25.0" prefWidth="25.0" text="1" />
-                  <Button id="null" mnemonicParsing="false" onMouseClicked="#handlePozadavek2" prefHeight="25.0" prefWidth="25.0" text="2" />
-                  <Button id="null" mnemonicParsing="false" onMouseClicked="#handlePozadavek3" prefHeight="25.0" prefWidth="25.0" text="3" />
+                  <Button id="null" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" onMouseClicked="#handlePozadavek1" text="1" />
+                  <Button id="null" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" onMouseClicked="#handlePozadavek2" text="2" />
+                  <Button id="null" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" onMouseClicked="#handlePozadavek3" text="3" />
                </items>
             </ToolBar>
             <Button id="null" layoutX="116.0" layoutY="367.0" mnemonicParsing="false" onMouseClicked="#handleMakePozadavek" text="Pozadavek" />
