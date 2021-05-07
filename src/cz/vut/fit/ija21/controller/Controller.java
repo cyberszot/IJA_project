@@ -45,8 +45,6 @@ import javafx.util.Duration;
  */
 public class Controller implements Initializable {
 
-    public static List<Integer> indexGoodsRequest = new ArrayList<>();
-
     @FXML
     private Circle vuz;
 
@@ -57,6 +55,10 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         // TODO Auto-generated method stub
 
+
+    }
+
+    public void obsluhaPozadavku(List<Integer> indexGoodsRequest){
         int actualLine = 0;
         int nextLine = 0;
         int shelf;
@@ -67,21 +69,13 @@ public class Controller implements Initializable {
         double center = 180.00;
 
 
-        indexGoodsRequest.add(32);
-        indexGoodsRequest.add(8);
-        indexGoodsRequest.add(137);
-        indexGoodsRequest.add(73);
-        indexGoodsRequest.add(40);
-        indexGoodsRequest.add(138);
-        indexGoodsRequest.add(118);
-        indexGoodsRequest.add(39);
-
         Collections.sort(indexGoodsRequest);
         Polyline polyline = new Polyline();
         polyline.getPoints().addAll(new Double[]{
                 92.0, 10.0,
         });
 
+        // obsluha cesty
         for (int i = 0; i < indexGoodsRequest.size(); i++) {
             shelf = indexGoodsRequest.get(i) % 10;
             if(shelf / 5 == 0) defaultPositionY = 35.00;
@@ -149,15 +143,13 @@ public class Controller implements Initializable {
         });
 
 
-
-
         PathTransition pathTransition = new PathTransition();
         pathTransition.setDuration(Duration.seconds(20));
-       // transition.setDuration(Duration.seconds(4));
+        // transition.setDuration(Duration.seconds(4));
         pathTransition.setNode(vuz);
         pathTransition.setPath(polyline);
-       // transition.setFromX(92);
-      //  transition.setToY(100);
+        // transition.setFromX(92);
+        //  transition.setToY(100);
         pathTransition.play();
     }
 
@@ -293,6 +285,8 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
 
+        List<Integer> indexGoodsRequest = new ArrayList<>();
+
         //Uložení id, dle zadaneho zbozi v požadavku.
         int u = 0;
         int c = 0;
@@ -308,6 +302,7 @@ public class Controller implements Initializable {
         }
         System.out.println(Main.nameGoodsRequest);
         System.out.println(indexGoodsRequest);
+        obsluhaPozadavku(indexGoodsRequest);
     }
 
     public void start(float time_c)
