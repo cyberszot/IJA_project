@@ -307,7 +307,6 @@ public class Controller implements Initializable {
         int goodsCount;
         int requestedCount;
         for(String i : Main.nameGoodsRequest){
-            System.out.println("Hledam: " + Main.nameGoodsRequest.get(indexOfRequest));
             indexOfGoods = 0;
             for(String j: Main.goodsInShelfs){
                 if(i.equals(j)){
