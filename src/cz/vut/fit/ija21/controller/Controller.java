@@ -139,13 +139,20 @@ public class Controller implements Initializable {
             polyline.getPoints().addAll(new Double[]{
                     defaultPositionX + lineOffset * nextLine, defaultPositionY + shelfOffset * shelf,
             });
-
         }
+
+        // homerun
+        nextLine = 0;
+        if(nextLine != actualLine) polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+        polyline.getPoints().addAll(new Double[]{
+                defaultPositionX + lineOffset * nextLine, 10.00,
+        });
+
 
 
 
         PathTransition pathTransition = new PathTransition();
-        pathTransition.setDuration(Duration.seconds(10));
+        pathTransition.setDuration(Duration.seconds(20));
        // transition.setDuration(Duration.seconds(4));
         pathTransition.setNode(vuz);
         pathTransition.setPath(polyline);
