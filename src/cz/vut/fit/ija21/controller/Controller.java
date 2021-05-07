@@ -12,8 +12,6 @@ package cz.vut.fit.ija21.controller;
 import cz.vut.fit.ija21.main.*;
 import javafx.animation.PathTransition;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,11 +19,8 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.*;
@@ -35,17 +30,12 @@ import javafx.scene.Parent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
 import java.net.URL;
 
-import javafx.animation.*;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.util.Duration;
 
 
@@ -67,8 +57,24 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         // TODO Auto-generated method stub
 
+        int actualLine = 0;
+        int nextLine = 0;
+        int shelf;
+        double defaultPositionX = 92.00;
+        double defaultPositionY;
+        double shelfOffset = 30.00;
+        double lineOffset = 65.00;
+        double center = 180.00;
+
+
         indexGoodsRequest.add(32);
         indexGoodsRequest.add(8);
+        indexGoodsRequest.add(137);
+        indexGoodsRequest.add(73);
+        indexGoodsRequest.add(40);
+        indexGoodsRequest.add(138);
+        indexGoodsRequest.add(118);
+        indexGoodsRequest.add(39);
 
         Collections.sort(indexGoodsRequest);
         Polyline polyline = new Polyline();
@@ -77,35 +83,88 @@ public class Controller implements Initializable {
         });
 
         for (int i = 0; i < indexGoodsRequest.size(); i++) {
-            if (indexGoodsRequest.get(i) < 20) {
-                System.out.println(indexGoodsRequest.get(i));
-                polyline.getPoints().addAll(new Double[]{
-                        92.00,
-                });polyline.getPoints().addAll(new Double[]{
-                        320.0,
-                });
+            shelf = indexGoodsRequest.get(i) % 10;
+            if(shelf / 5 == 0) defaultPositionY = 35.00;
+            else defaultPositionY = 50.00;
+            if (indexGoodsRequest.get(i) / 20 == 0) {       // 1. rada
+                nextLine = 0;
+                // dalsi pozadavek je v jine rade
+                if(nextLine != actualLine) polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+                actualLine = 0;
             }
-            if (indexGoodsRequest.get(i) > 20) {
-                System.out.println(indexGoodsRequest.get(i));
-                polyline.getPoints().addAll(new Double[]{
-                        92.00,
-                });polyline.getPoints().addAll(new Double[]{
-                        180.0,
-                        150.0, 180.0,
-                });
+            if (indexGoodsRequest.get(i) / 20 == 1) {       // 2. rada
+                nextLine = 1;
+                // dalsi pozadavek je v jine rade
+                if(nextLine != actualLine) polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+                actualLine = 1;
             }
+            if (indexGoodsRequest.get(i) / 20 == 2) {       // 3. rada
+                nextLine = 2;
+                // dalsi pozadavek je v jine rade
+                if(nextLine != actualLine) polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+                actualLine = 2;
+            }
+            if (indexGoodsRequest.get(i) / 20 == 3) {       // 4. rada
+                nextLine = 3;
+                // dalsi pozadavek je v jine rade
+                if(nextLine != actualLine) polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+                actualLine = 3;
+            }
+            if (indexGoodsRequest.get(i) / 20 == 4) {       // 5. rada
+                nextLine = 4;
+                // dalsi pozadavek je v jine rade
+                if(nextLine != actualLine) polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+                actualLine = 4;
+            }
+            if (indexGoodsRequest.get(i) / 20 == 5) {       // 6. rada
+                nextLine = 5;
+                // dalsi pozadavek je v jine rade
+                if(nextLine != actualLine) polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+                actualLine = 5;
+            }
+            if (indexGoodsRequest.get(i) / 20 == 6) {       // 7. rada
+                nextLine = 6;
+                // dalsi pozadavek je v jine rade
+                if(nextLine != actualLine) polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+                actualLine = 6;
+            }
+            if (indexGoodsRequest.get(i) / 20 == 7) {       // 8. rada
+                nextLine = 7;
+                // dalsi pozadavek je v jine rade
+                if(nextLine != actualLine) polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+                actualLine = 7;
+            }
+
+            // posun voziku na pozici regalu v rade
+            polyline.getPoints().addAll(new Double[]{
+                    defaultPositionX + lineOffset * nextLine, defaultPositionY + shelfOffset * shelf,
+            });
+
         }
 
 
 
         PathTransition pathTransition = new PathTransition();
-        pathTransition.setDuration(Duration.seconds(5));
+        pathTransition.setDuration(Duration.seconds(10));
        // transition.setDuration(Duration.seconds(4));
         pathTransition.setNode(vuz);
         pathTransition.setPath(polyline);
        // transition.setFromX(92);
       //  transition.setToY(100);
         pathTransition.play();
+    }
+
+    public Polyline moveToLine(Polyline polyline, double X1, double X2, double Y){
+        // nastaveni voziku na stred rady
+        polyline.getPoints().addAll(new Double[]{
+                X1, Y
+        });
+
+        // posun na dalsi radu
+        polyline.getPoints().addAll(new Double[]{
+                X2, Y
+        });
+        return polyline;
     }
 
     @FXML protected void handleQuitButtonAction(ActionEvent event){
