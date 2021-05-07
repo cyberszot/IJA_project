@@ -29,7 +29,7 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane onMouseClicked="#onClickEvent" prefHeight="425.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+    <AnchorPane fx:id="root" onMouseClicked="#onClickEvent" prefHeight="425.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
       <children>
             <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#a8d5ff" height="400.0" stroke="#a8d5ff" strokeType="INSIDE" width="640.0" />
             <Group layoutX="14.0" layoutY="14.0" />
@@ -203,7 +203,6 @@
             <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#59afff" height="348.0" layoutX="475.0" layoutY="14.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
             <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#59afff" height="348.0" layoutX="540.0" layoutY="14.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
             <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#ffdf85" height="27.0" layoutX="75.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="34.0" />
-            <Circle fx:id="vuz" radius="13.0" fill="red" stroke="BLACK" strokeType="INSIDE" onMouseClicked="#handleObsahVoziku" />
             <ToolBar id="null" layoutX="391.0" layoutY="362.0" prefHeight="35.0" prefWidth="154.0">
               <items>
                 <Button id="null" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="1" />

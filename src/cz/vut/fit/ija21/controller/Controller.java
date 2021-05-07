@@ -18,10 +18,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.*;
 import javafx.stage.Stage;
@@ -44,9 +49,8 @@ import javafx.util.Duration;
  * @author Rene Szotkowski
  */
 public class Controller implements Initializable {
-
     @FXML
-    private Circle vuz;
+    public AnchorPane root;
 
     // V proměnné pozadavekFile je uložen název souboru s požadavky.
     String pozadavekFile;
@@ -59,6 +63,8 @@ public class Controller implements Initializable {
     }
 
     public void obsluhaPozadavku(List<Integer> indexGoodsRequest){
+        Circle vuz = new Circle(92.0, 10.0, 10, Color.RED);
+        root.getChildren().add(vuz);
         int actualLine = 0;
         int nextLine = 0;
         int shelf;
@@ -321,9 +327,8 @@ public class Controller implements Initializable {
             indexOfRequest++;
         }
 
-        System.out.println(Main.nameGoodsRequest);
-        System.out.println(Main.countGoodsRequest);
-        System.out.println(indexGoodsRequest);
+
+
         obsluhaPozadavku(indexGoodsRequest);
     }
 
