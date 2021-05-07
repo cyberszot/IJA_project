@@ -1,6 +1,25 @@
-Papir;5
-Alobal;7
+Papir;2
+Alobal;1
 Lopata;1
-Dzem;7
-Cihly;4
-Uhli;10
+Dzem;3
+Cihly;2
+Uhli;4
+Banany;1
+Kvetinace;1
+Sada nozu;1
+Smetana;3
+Mouka;2
+Kytara;1
+Pizza;5
+Olej;1
+Sada nozu;1
+Misky;2
+Smetana;2
+Proso;2
+Kukurice;2
+Lampa;2
+Umyvadlo;1
+Oves;1
+Whiskey;6
+Zubni pasta;1
+Panev;1
