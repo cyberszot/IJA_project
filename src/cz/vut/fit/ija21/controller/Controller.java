@@ -264,13 +264,12 @@ public class Controller implements Initializable {
         path = path.toAbsolutePath();
         String cesta = path.toString();
 
-        int pocet = 0;
+
         try {
 
             File obj = new File(cesta + "/data/"+pozadavekFile);
             Scanner scannerPozadavek = new Scanner(obj);
             while (scannerPozadavek.hasNextLine()) {
-                pocet++;
                 String data = scannerPozadavek.nextLine();
                 String str = data.toString();
                 String[] zboziP = str.split(";");
@@ -285,22 +284,46 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
 
+
+
+
         List<Integer> indexGoodsRequest = new ArrayList<>();
 
         //Uložení id, dle zadaneho zbozi v požadavku.
-        int u = 0;
         int c = 0;
         // iterating over an array
         for (String i : Main.goodsInShelfs) {
-            c++;
             for (String j : Main.nameGoodsRequest) {
                 if (i.equals(j)) {
-                    indexGoodsRequest.add(c);       //TODO
-                    u++;
+                    indexGoodsRequest.add(c);
+                    break;
                 }
             }
+            c++;
         }
+
+        int indexOfGoods;
+        int indexOfRequest = 0;
+        int goodsCount;
+        int requestedCount;
+        for(String i : Main.nameGoodsRequest){
+            System.out.println("Hledam: " + Main.nameGoodsRequest.get(indexOfRequest));
+            indexOfGoods = 0;
+            for(String j: Main.goodsInShelfs){
+                if(i.equals(j)){
+                    goodsCount = Integer.valueOf(Main.goodsInShelfsCount.get(indexOfGoods));
+                    requestedCount = Integer.valueOf(Main.countGoodsRequest.get(indexOfRequest));
+                    goodsCount -= requestedCount;
+                    Main.goodsInShelfsCount.set(indexOfGoods, Integer.toString(goodsCount));
+                    break;
+                }
+                indexOfGoods++;
+            }
+            indexOfRequest++;
+        }
+
         System.out.println(Main.nameGoodsRequest);
+        System.out.println(Main.countGoodsRequest);
         System.out.println(indexGoodsRequest);
         obsluhaPozadavku(indexGoodsRequest);
     }
