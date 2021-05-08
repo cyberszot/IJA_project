@@ -291,45 +291,70 @@ public class Controller implements Initializable {
         }
 
 
-
-
+        List<String> nameGoodsRequest = new ArrayList<>();
+        List<String> countGoodsRequest = new ArrayList<>();
         List<Integer> indexGoodsRequest = new ArrayList<>();
-
-        //Uložení id, dle zadaneho zbozi v požadavku.
-        int c = 0;
-        // iterating over an array
-        for (String i : Main.goodsInShelfs) {
-            for (String j : Main.nameGoodsRequest) {
-                if (i.equals(j)) {
-                    indexGoodsRequest.add(c);
-                    break;
-                }
-            }
-            c++;
-        }
-
+        int count = 0;
+        int c;
         int indexOfGoods;
-        int indexOfRequest = 0;
+        int indexOfRequest;
         int goodsCount;
         int requestedCount;
-        for(String i : Main.nameGoodsRequest){
-            indexOfGoods = 0;
-            for(String j: Main.goodsInShelfs){
-                if(i.equals(j)){
-                    goodsCount = Integer.valueOf(Main.goodsInShelfsCount.get(indexOfGoods));
-                    requestedCount = Integer.valueOf(Main.countGoodsRequest.get(indexOfRequest));
-                    goodsCount -= requestedCount;
-                    Main.goodsInShelfsCount.set(indexOfGoods, Integer.toString(goodsCount));
-                    break;
+
+        for (int m=0; m < Main.nameGoodsRequest.size(); m++){
+            if(count + Integer.parseInt(Main.countGoodsRequest.get(m)) > 10 || m == Main.nameGoodsRequest.size() - 1){
+                if(m == Main.nameGoodsRequest.size() - 1){
+                    nameGoodsRequest.add(Main.nameGoodsRequest.get(m));
+                    countGoodsRequest.add(Main.countGoodsRequest.get(m));
                 }
-                indexOfGoods++;
+                System.out.println("vozik: " + nameGoodsRequest);
+                System.out.println("mnozstvi: " + countGoodsRequest);
+                count = 0;
+                c = 0;
+                indexOfRequest = 0;
+
+                //Uložení id, dle zadaneho zbozi v požadavku.
+                for (String i : Main.goodsInShelfs) {
+                    for (String j : nameGoodsRequest) {
+                        if (i.equals(j)) {
+                            indexGoodsRequest.add(c);
+                            break;
+                        }
+                    }
+                    c++;
+                }
+
+                for(String i : nameGoodsRequest){
+                    indexOfGoods = 0;
+                    for(String j: Main.goodsInShelfs){
+                        if(i.equals(j)){
+                            goodsCount = Integer.valueOf(Main.goodsInShelfsCount.get(indexOfGoods));
+                            requestedCount = Integer.valueOf(countGoodsRequest.get(indexOfRequest));
+                            goodsCount -= requestedCount;
+                            Main.goodsInShelfsCount.set(indexOfGoods, Integer.toString(goodsCount));
+                            break;
+                        }
+                        indexOfGoods++;
+                    }
+                    indexOfRequest++;
+                }
+                if(m != Main.nameGoodsRequest.size() - 1)
+                    m--;
+                obsluhaPozadavku(indexGoodsRequest);
+                nameGoodsRequest.clear();
+                countGoodsRequest.clear();
+                indexGoodsRequest.clear();
             }
-            indexOfRequest++;
+            else{
+                count += Integer.parseInt(Main.countGoodsRequest.get(m));
+                nameGoodsRequest.add(Main.nameGoodsRequest.get(m));
+                countGoodsRequest.add(Main.countGoodsRequest.get(m));
+            }
         }
 
 
 
-        obsluhaPozadavku(indexGoodsRequest);
+
     }
 
     public void start(float time_c)
