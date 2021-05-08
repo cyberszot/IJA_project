@@ -12,6 +12,9 @@ package cz.vut.fit.ija21.controller;
 import cz.vut.fit.ija21.main.*;
 import javafx.animation.PathTransition;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,6 +22,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -46,6 +50,7 @@ import java.net.URL;
 public class Controller implements Initializable {
     @FXML
     public AnchorPane root;
+    public Integer vuzIndex = 0;
 
 
     // V proměnné pozadavekFile je uložen název souboru s požadavky.
@@ -58,8 +63,10 @@ public class Controller implements Initializable {
 
     }
 
-    public void obsluhaPozadavku(List<Integer> indexGoodsRequest){
+    public void obsluhaPozadavku(List<Integer> indexGoodsRequest) {
         Circle vuz = new Circle(92.0, 10.0, 13, Color.RED);
+        vuz.setId("vozik:" + vuzIndex);
+        vuzIndex++;
         root.getChildren().add(vuz);
         int actualLine = 0;
         int nextLine = 0;
@@ -146,14 +153,11 @@ public class Controller implements Initializable {
         if(nextLine != actualLine) polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
         polyline.getPoints().addAll(defaultPositionX + lineOffset * nextLine, 10.00);
 
-
         PathTransition pathTransition = new PathTransition();
-        pathTransition.setDuration(Duration.seconds(20));
+        pathTransition.setDuration(Duration.seconds(50));
         // transition.setDuration(Duration.seconds(4));
         pathTransition.setNode(vuz);
         pathTransition.setPath(polyline);
-        // transition.setFromX(92);
-        //  transition.setToY(100);
         pathTransition.play();
     }
 
@@ -169,6 +173,7 @@ public class Controller implements Initializable {
     @FXML protected void handleQuitButtonAction(){
         Platform.exit();
     }
+
     @FXML protected void handleHelpButtonAction() throws Exception{
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("help.fxml")));
         Stage help = new Stage();
@@ -186,22 +191,68 @@ public class Controller implements Initializable {
         newPozadavek.show();
     }
 
-    @FXML public void handleObsahVoziku() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("obsahVoziku.fxml")));
-        Stage newPozadavek = new Stage();
-        newPozadavek.setTitle("Aktuální obsah vozíku");
-        newPozadavek.setScene(new Scene(root,420,260));
-        newPozadavek.show();
-    }
-
+    /**
+     * Otevreni noveho okna po kliknuti na vozik nebo regal
+     * @param mouseEvent
+     */
     public void onClickEvent(MouseEvent mouseEvent) {
-        Integer shelfID = Integer.valueOf(mouseEvent.getPickResult().getIntersectedNode().getId()); //returns JUST the id of the object that was clicked
-        if(!shelfID.equals("null")) {
+        String id = mouseEvent.getPickResult().getIntersectedNode().getId();
+        if(!id.equals("null")){
+            if(id.contains("vozik")){
+                Stage vozikWindow = new Stage();
+                ListView<String> goodsNameCountList = new ListView<String>();
+                ObservableList list = FXCollections.observableArrayList();
+                Integer vozikID = Integer.parseInt(id.split(":")[1]);
+
+                vozikWindow.setTitle("vozik: " + vozikID);
+
+                Integer count = 0;
+                Integer iterace = 0;
+                List<String> nameGoodsRequest = new ArrayList<>();
+                List<String> countGoodsRequest = new ArrayList<>();
+
+                // magic
+                for (int m=0; m < Main.nameGoodsRequest.size(); m++){
+                    if(count + Integer.parseInt(Main.countGoodsRequest.get(m)) > 10 || m == Main.nameGoodsRequest.size() - 1){
+                        if(m == Main.nameGoodsRequest.size() - 1){
+                            nameGoodsRequest.add(Main.nameGoodsRequest.get(m));
+                            countGoodsRequest.add(Main.countGoodsRequest.get(m));
+                        }
+                        iterace++;
+                        if(iterace > vozikID)
+                            break;
+                        count=0;
+                        if(m != Main.nameGoodsRequest.size() - 1)
+                            m--;
+                    }
+                    else{
+                        count += Integer.parseInt(Main.countGoodsRequest.get(m));
+                        if(iterace == vozikID) {
+                            nameGoodsRequest.add(Main.nameGoodsRequest.get(m));
+                            countGoodsRequest.add(Main.countGoodsRequest.get(m));
+                        }
+                    }
+                }
+
+                list.addAll(nameGoodsRequest, countGoodsRequest);
+                goodsNameCountList.getItems().addAll(list);
+
+                VBox contain = new VBox(goodsNameCountList);
+                contain.setSpacing(15);
+                contain.setPadding(new Insets(15));
+                contain.setAlignment(Pos.CENTER_LEFT);
+
+                vozikWindow.setScene(new Scene(contain, 250, 100));
+                vozikWindow.show();
+                vozikWindow.setResizable(false);
+                return;
+            }
+            Integer shelfID = Integer.valueOf(mouseEvent.getPickResult().getIntersectedNode().getId()); //returns JUST the id of the object that was clicked
             Stage shelfWindow = new Stage();
             shelfWindow.setTitle("shelf id: " + shelfID);
 
             Label goodsTypeText = new Label("Zboží: " + Main.goodsInShelfs.get(shelfID));
-            Label goodsAmountText = new Label("Počet kusů:: " + Main.goodsInShelfsCount.get(shelfID));
+            Label goodsAmountText = new Label("Počet kusů: " + Main.goodsInShelfsCount.get(shelfID));
 
             VBox container = new VBox(goodsTypeText, goodsAmountText);
             container.setSpacing(15);
@@ -214,6 +265,9 @@ public class Controller implements Initializable {
         }
     }
 
+    /**
+     * Vraceni zaplneni skladu na vychozi hodnotu
+     */
     public void handleResetButton() {
         Main.goodsInShelfs.clear();
         Main.goodsInShelfsCount.clear();
@@ -242,17 +296,17 @@ public class Controller implements Initializable {
         }
     }
 
-    public void handlePozadavek1() {
+    public void handlePozadavek1() throws IOException {
         pozadavekFile = "pozadavky1.txt";
         zpracujPozadavek();
     }
 
-    public void handlePozadavek2() {
+    public void handlePozadavek2() throws IOException {
         pozadavekFile = "pozadavky2.txt";
         zpracujPozadavek();
     }
 
-    public void handlePozadavek3() {
+    public void handlePozadavek3() throws IOException {
         pozadavekFile = "pozadavky3.txt";
         zpracujPozadavek();
     }
@@ -260,7 +314,7 @@ public class Controller implements Initializable {
     /**
      * Zpracovani pozadavku ze souboru
      */
-    public void zpracujPozadavek() {
+    public void zpracujPozadavek() throws IOException {
         Main.nameGoodsRequest.clear();
         Main.countGoodsRequest.clear();
         Path path = Paths.get("");
@@ -301,6 +355,7 @@ public class Controller implements Initializable {
         int indexOfRequest;
         int goodsCount;
         int requestedCount;
+        vuzIndex = 0;
 
         //
         for (int m=0; m < Main.nameGoodsRequest.size(); m++){
