@@ -12,48 +12,44 @@ package cz.vut.fit.ija21.controller;
 import cz.vut.fit.ija21.main.*;
 import javafx.animation.PathTransition;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.*;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
-
+import javafx.util.Duration;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
-
 import java.net.URL;
 
-import javafx.util.Duration;
+
 
 
 /**
  * Ovladani uzivatelskeho rozhrani
- * @author Rene Szotkowski
+ * @author vsichni
  */
 public class Controller implements Initializable {
     @FXML
     public AnchorPane root;
 
+
     // V proměnné pozadavekFile je uložen název souboru s požadavky.
-    String pozadavekFile;
+    public String pozadavekFile;
 
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -63,7 +59,7 @@ public class Controller implements Initializable {
     }
 
     public void obsluhaPozadavku(List<Integer> indexGoodsRequest){
-        Circle vuz = new Circle(92.0, 10.0, 10, Color.RED);
+        Circle vuz = new Circle(92.0, 10.0, 13, Color.RED);
         root.getChildren().add(vuz);
         int actualLine = 0;
         int nextLine = 0;
@@ -77,76 +73,78 @@ public class Controller implements Initializable {
 
         Collections.sort(indexGoodsRequest);
         Polyline polyline = new Polyline();
-        polyline.getPoints().addAll(new Double[]{
-                92.0, 10.0,
-        });
+        polyline.getPoints().addAll(92.0, 10.0);
 
         // obsluha cesty
-        for (int i = 0; i < indexGoodsRequest.size(); i++) {
-            shelf = indexGoodsRequest.get(i) % 10;
-            if(shelf / 5 == 0) defaultPositionY = 35.00;
+        for (Integer integer : indexGoodsRequest) {
+            shelf = integer % 10;
+            if (shelf / 5 == 0) defaultPositionY = 35.00;
             else defaultPositionY = 50.00;
-            if (indexGoodsRequest.get(i) / 20 == 0) {       // 1. rada
+            if (integer / 20 == 0) {       // 1. rada
                 nextLine = 0;
                 // dalsi pozadavek je v jine rade
-                if(nextLine != actualLine) polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+                if (nextLine != actualLine)
+                    polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
                 actualLine = 0;
             }
-            if (indexGoodsRequest.get(i) / 20 == 1) {       // 2. rada
+            if (integer / 20 == 1) {       // 2. rada
                 nextLine = 1;
                 // dalsi pozadavek je v jine rade
-                if(nextLine != actualLine) polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+                if (nextLine != actualLine)
+                    polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
                 actualLine = 1;
             }
-            if (indexGoodsRequest.get(i) / 20 == 2) {       // 3. rada
+            if (integer / 20 == 2) {       // 3. rada
                 nextLine = 2;
                 // dalsi pozadavek je v jine rade
-                if(nextLine != actualLine) polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+                if (nextLine != actualLine)
+                    polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
                 actualLine = 2;
             }
-            if (indexGoodsRequest.get(i) / 20 == 3) {       // 4. rada
+            if (integer / 20 == 3) {       // 4. rada
                 nextLine = 3;
                 // dalsi pozadavek je v jine rade
-                if(nextLine != actualLine) polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+                if (nextLine != actualLine)
+                    polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
                 actualLine = 3;
             }
-            if (indexGoodsRequest.get(i) / 20 == 4) {       // 5. rada
+            if (integer / 20 == 4) {       // 5. rada
                 nextLine = 4;
                 // dalsi pozadavek je v jine rade
-                if(nextLine != actualLine) polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+                if (nextLine != actualLine)
+                    polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
                 actualLine = 4;
             }
-            if (indexGoodsRequest.get(i) / 20 == 5) {       // 6. rada
+            if (integer / 20 == 5) {       // 6. rada
                 nextLine = 5;
                 // dalsi pozadavek je v jine rade
-                if(nextLine != actualLine) polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+                if (nextLine != actualLine)
+                    polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
                 actualLine = 5;
             }
-            if (indexGoodsRequest.get(i) / 20 == 6) {       // 7. rada
+            if (integer / 20 == 6) {       // 7. rada
                 nextLine = 6;
                 // dalsi pozadavek je v jine rade
-                if(nextLine != actualLine) polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+                if (nextLine != actualLine)
+                    polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
                 actualLine = 6;
             }
-            if (indexGoodsRequest.get(i) / 20 == 7) {       // 8. rada
+            if (integer / 20 == 7) {       // 8. rada
                 nextLine = 7;
                 // dalsi pozadavek je v jine rade
-                if(nextLine != actualLine) polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+                if (nextLine != actualLine)
+                    polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
                 actualLine = 7;
             }
 
             // posun voziku na pozici regalu v rade
-            polyline.getPoints().addAll(new Double[]{
-                    defaultPositionX + lineOffset * nextLine, defaultPositionY + shelfOffset * shelf,
-            });
+            polyline.getPoints().addAll(defaultPositionX + lineOffset * nextLine, defaultPositionY + shelfOffset * shelf);
         }
 
         // homerun
         nextLine = 0;
         if(nextLine != actualLine) polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
-        polyline.getPoints().addAll(new Double[]{
-                defaultPositionX + lineOffset * nextLine, 10.00,
-        });
+        polyline.getPoints().addAll(defaultPositionX + lineOffset * nextLine, 10.00);
 
 
         PathTransition pathTransition = new PathTransition();
@@ -161,22 +159,18 @@ public class Controller implements Initializable {
 
     public Polyline moveToLine(Polyline polyline, double X1, double X2, double Y){
         // nastaveni voziku na stred rady
-        polyline.getPoints().addAll(new Double[]{
-                X1, Y
-        });
+        polyline.getPoints().addAll(X1, Y);
 
         // posun na dalsi radu
-        polyline.getPoints().addAll(new Double[]{
-                X2, Y
-        });
+        polyline.getPoints().addAll(X2, Y);
         return polyline;
     }
 
-    @FXML protected void handleQuitButtonAction(ActionEvent event){
+    @FXML protected void handleQuitButtonAction(){
         Platform.exit();
     }
-    @FXML protected void handleHelpButtonAction(ActionEvent event) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("help.fxml"));
+    @FXML protected void handleHelpButtonAction() throws Exception{
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("help.fxml")));
         Stage help = new Stage();
         help.setTitle("About ija-app");
         help.setScene(new Scene(root, 420, 260));
@@ -184,16 +178,16 @@ public class Controller implements Initializable {
         help.setResizable(false);
     }
 
-    @FXML public void handleMakePozadavek(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("newpozadavek.fxml"));
+    @FXML public void handleMakePozadavek() throws IOException {
+        Parent koren = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("newpozadavek.fxml")));
         Stage newPozadavek = new Stage();
         newPozadavek.setTitle("Vytvoř nový požadavek");
-        newPozadavek.setScene(new Scene(root,420,260));
+        newPozadavek.setScene(new Scene(koren,420,260));
         newPozadavek.show();
     }
 
-    @FXML public void handleObsahVoziku(MouseEvent mouseEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("obsahVoziku.fxml"));
+    @FXML public void handleObsahVoziku() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("obsahVoziku.fxml")));
         Stage newPozadavek = new Stage();
         newPozadavek.setTitle("Aktuální obsah vozíku");
         newPozadavek.setScene(new Scene(root,420,260));
@@ -220,7 +214,7 @@ public class Controller implements Initializable {
         }
     }
 
-    public void handleResetButton(MouseEvent mouseEvent) {
+    public void handleResetButton() {
         Main.goodsInShelfs.clear();
         Main.goodsInShelfsCount.clear();
 
@@ -248,21 +242,24 @@ public class Controller implements Initializable {
         }
     }
 
-    public void handlePozadavek1(MouseEvent mouseEvent) {
+    public void handlePozadavek1() {
         pozadavekFile = "pozadavky1.txt";
         zpracujPozadavek();
     }
 
-    public void handlePozadavek2(MouseEvent mouseEvent) {
+    public void handlePozadavek2() {
         pozadavekFile = "pozadavky2.txt";
         zpracujPozadavek();
     }
 
-    public void handlePozadavek3(MouseEvent mouseEvent) {
+    public void handlePozadavek3() {
         pozadavekFile = "pozadavky3.txt";
         zpracujPozadavek();
     }
 
+    /**
+     * Zpracovani pozadavku ze souboru
+     */
     public void zpracujPozadavek() {
         Main.nameGoodsRequest.clear();
         Main.countGoodsRequest.clear();
@@ -273,12 +270,11 @@ public class Controller implements Initializable {
 
         try {
 
-            File obj = new File(cesta + "/data/"+pozadavekFile);
+            File obj = new File(cesta + "/data/" + pozadavekFile);
             Scanner scannerPozadavek = new Scanner(obj);
             while (scannerPozadavek.hasNextLine()) {
                 String data = scannerPozadavek.nextLine();
-                String str = data.toString();
-                String[] zboziP = str.split(";");
+                String[] zboziP = data.split(";");
 
                 Main.nameGoodsRequest.add(zboziP[0]);
                 Main.countGoodsRequest.add(zboziP[1]);
@@ -289,8 +285,13 @@ public class Controller implements Initializable {
             System.out.println("Nastala chyba pri otevirani souboru s pozadavky.");
             e.printStackTrace();
         }
+        zaplnVoziky();
+    }
 
-
+    /**
+     * Rozdeleni pozadavku na voziky
+     */
+    public void zaplnVoziky() {
         List<String> nameGoodsRequest = new ArrayList<>();
         List<String> countGoodsRequest = new ArrayList<>();
         List<Integer> indexGoodsRequest = new ArrayList<>();
@@ -301,6 +302,7 @@ public class Controller implements Initializable {
         int goodsCount;
         int requestedCount;
 
+        //
         for (int m=0; m < Main.nameGoodsRequest.size(); m++){
             if(count + Integer.parseInt(Main.countGoodsRequest.get(m)) > 10 || m == Main.nameGoodsRequest.size() - 1){
                 if(m == Main.nameGoodsRequest.size() - 1){
@@ -328,8 +330,8 @@ public class Controller implements Initializable {
                     indexOfGoods = 0;
                     for(String j: Main.goodsInShelfs){
                         if(i.equals(j)){
-                            goodsCount = Integer.valueOf(Main.goodsInShelfsCount.get(indexOfGoods));
-                            requestedCount = Integer.valueOf(countGoodsRequest.get(indexOfRequest));
+                            goodsCount = Integer.parseInt(Main.goodsInShelfsCount.get(indexOfGoods));
+                            requestedCount = Integer.parseInt(countGoodsRequest.get(indexOfRequest));
                             goodsCount -= requestedCount;
                             Main.goodsInShelfsCount.set(indexOfGoods, Integer.toString(goodsCount));
                             break;
@@ -351,10 +353,6 @@ public class Controller implements Initializable {
                 countGoodsRequest.add(Main.countGoodsRequest.get(m));
             }
         }
-
-
-
-
     }
 
     public void start(float time_c)

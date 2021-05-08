@@ -1,3 +1,11 @@
+/**
+ * project IJA21
+ * date: 2021/05/08
+ * authors: xkyjov03    :   Dalibor Kyjovsky
+ *          xszotk07    :   Rene Szotkowski
+ *
+ * file: newPozadavekController.java
+ */
 package cz.vut.fit.ija21.controller;
 
 import cz.vut.fit.ija21.main.Main;
@@ -13,18 +21,27 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 
+/**
+ * Ovladac pro zadavani uzivatelskych pozadavku
+ */
 public class newPozadavekController implements Initializable {
 
-    @FXML private ListView<String> goodsList;
-    @FXML private Text selectedGoods;
-    @FXML private TextField goodsCount;
-    @FXML private Button finalise;
+    @FXML
+    private ListView<String> goodsList;
+    @FXML
+    private Text selectedGoods;
+    @FXML
+    private TextField goodsCount;
     ObservableList list = FXCollections.observableArrayList();
-    private int pocet = 0;
 
+    /**
+     * inicializace noveho pozadavku
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Main.nameGoodsRequest.clear();
@@ -32,44 +49,51 @@ public class newPozadavekController implements Initializable {
         load_goods();
     }
 
-    public void load_goods(){
+    /**
+     * Vypsani dostupneho zbozi do listu
+     */
+    public void load_goods() {
         list.removeAll(list);
 
-        for (String s: Main.goodsInShelfs) {
-            if(!s.equals("0"))
+        for (String s : Main.goodsInShelfs) {
+            if (!s.equals("0"))
                 list.add(s);
         }
 
         goodsList.getItems().addAll(list);
     }
 
+    /**
+     * zobrazeni zbozi, ktere je oznaceno
+     *
+     * @param mouseEvent
+     */
     public void gooodsSelected(MouseEvent mouseEvent) {
         selectedGoods.setText(goodsList.getSelectionModel().getSelectedItem());
     }
 
+    /**
+     * Pridani pozadavku po kliknuti tlacitka "pridat"
+     *
+     * @param mouseEvent
+     */
     public void addPozadavek(MouseEvent mouseEvent) {
-        pocet++;
         Main.nameGoodsRequest.add(goodsList.getSelectionModel().getSelectedItem());
         Main.countGoodsRequest.add(goodsCount.getText());
     }
 
+    /**
+     * Zpracovani pozadavku po kliknuti tlacitka "Dokoncit"
+     *
+     * @param mouseEvent
+     */
     public void zpracujPozadavek(MouseEvent mouseEvent) {
-        int[] indexGoodsRequest = new int[pocet];
-        int u = 0;
-        int c = 0;
-        // iterating over an array
-        for (String i : Main.goodsInShelfs) {
-            c++;
-            for (String j : Main.nameGoodsRequest) {
-                if (i.equals(j)) {
-                    indexGoodsRequest[u] = c;
-                    u++;
-                }
-            }
-        }
-        System.out.println(Main.nameGoodsRequest);
-        System.out.println(Arrays.toString(indexGoodsRequest));
-        Stage stage = (Stage) ((Button)mouseEvent.getSource()).getScene().getWindow();
+        // Zavre okno
+        Stage stage = (Stage) ((Button) mouseEvent.getSource()).getScene().getWindow();
         stage.close();
+
+        Controller instance = new Controller();
+        instance.zaplnVoziky();
     }
+
 }

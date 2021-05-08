@@ -18,8 +18,8 @@ import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.*;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 
@@ -27,42 +27,24 @@ import java.util.Scanner;
 
 public class Main extends Application{
 
-    public static List<Canvas> elem = new ArrayList<>();
-    public static List<String> goodsInShelfs = new ArrayList<String>();
-    public static List<String> goodsInShelfsCount = new ArrayList<String>();
+    public static List<String> goodsInShelfs = new ArrayList<>();
+    public static List<String> goodsInShelfsCount = new ArrayList<>();
 
-    public static List<String> nameGoodsRequest = new ArrayList<String>();
-    public static List<String> countGoodsRequest = new ArrayList<String>();
-
+    public static List<String> nameGoodsRequest = new ArrayList<>();
+    public static List<String> countGoodsRequest = new ArrayList<>();
 
 
-    //  public static List<Shelfs> get_goodsInShelfs(){
-  //      return goodsInShelfs;
-  //  }
-    public static List<Canvas> get_elements(){
-        return elem;
-    }
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-
-        List<String> shelfList = new ArrayList<>();
-
-       // FXMLLoader ld =  FXMLLoader.load(getClass().getClassLoader().getResource("sample.fxml"));
-        Parent root =  FXMLLoader.load(getClass().getClassLoader().getResource("sample.fxml"));
-        // BorderPane root = ld.load();
-          // Scene scene = new Scene(root, 640, 420);
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("sample.fxml")));
         primaryStage.setTitle("IJAProject");
-       primaryStage.setScene(new Scene(root, 640, 420));
-
+        primaryStage.setScene(new Scene(root, 640, 420));
         primaryStage.show();
-
-
-     //   Controller controller = ld.getController();
 
         /*  limits window resizability  */
         primaryStage.setResizable(false);
-        /*----------------------*/
+        /*------------------------------*/
 
         Path path = Paths.get("");
         path = path.toAbsolutePath();
@@ -75,8 +57,7 @@ public class Main extends Application{
             Scanner myScanner = new Scanner(obj);
             while (myScanner.hasNextLine()) {
                 String data = myScanner.nextLine();
-                String str = data.toString();
-                String[] zbozi = str.split(";");
+                String[] zbozi = data.split(";");
 
                 String nazev = zbozi[0];
                 String pocet = zbozi[1];
@@ -90,7 +71,5 @@ public class Main extends Application{
             System.out.println("Nastala chyba pri otevirani souboru 'goods.txt'.");
             e.printStackTrace();
         }
-
     }
-
 }
