@@ -28,7 +28,7 @@ Podlozka;43
 Bici souprava;2
 Piano;1
 Housle;14
-Kytara;9
+Nadobi;9
 Fletna;34
 0;0
 0;0

@@ -12,9 +12,9 @@ Mouka;2
 Kytara;1
 Pizza;5
 Olej;1
-Sada nozu;1
+Drzaky;1
 Misky;2
-Smetana;2
+Gril;2
 Proso;2
 Kukurice;2
 Lampa;2
