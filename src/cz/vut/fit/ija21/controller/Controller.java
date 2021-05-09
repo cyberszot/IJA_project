@@ -83,7 +83,7 @@ public class Controller implements Initializable {
     public boolean isSeventhDown = false;
     public boolean isEighthDown = false;
     public Integer vuzIndex = 0;
-    public List<String> allIndexGoodsRequest = new ArrayList<>();
+    public List<Integer> allIndexGoodsRequest = new ArrayList<>();
 
 
     // V proměnné pozadavekFile je uložen název souboru s požadavky.
@@ -371,7 +371,6 @@ public class Controller implements Initializable {
                     eighthDown.setFill(Color.RED);
                 else
                     eighthDown.setFill(Color.BLUE);
-                System.out.println("isEighthDown: " + isEighthDown);
                 return;
             }
 
@@ -538,17 +537,103 @@ public class Controller implements Initializable {
         int indexOfRequest;
         int goodsCount;
         int requestedCount;
+        int shelf = 0;
+        int line = 0;
         vuzIndex = 0;
+        allIndexGoodsRequest.clear();
 
-        //
+        int x = 0;
+        for (String i : Main.goodsInShelfs) {
+            for (String j : Main.nameGoodsRequest) {
+                if (i.equals(j)) {
+                    allIndexGoodsRequest.add(x);
+                    break;
+                }
+            }
+            x++;
+        }
+
+        // rozdeleni po max 10 kusech na vozik
         for (int m=0; m < Main.nameGoodsRequest.size(); m++){
+            shelf = allIndexGoodsRequest.get(m) % 10;
+            line = allIndexGoodsRequest.get(m) / 20;
+            // omezeni podle zablokovane trasy
+            if(isFirstUp){
+                if(line != 0)
+                    continue;
+                else if(shelf >= 5)
+                    continue;
+            }
+            if(isFirstDown){
+                if(line == 0 && shelf >= 5)
+                    continue;
+            }
+            if(isSecondUp){
+                if(line == 1 && shelf < 5)
+                    continue;
+            }
+            if(isSecondDown){
+                if(line == 1 && shelf >= 5){
+                    continue;
+                }
+            }
+            if(isThirdUp){
+                if(line == 2 && shelf < 5)
+                    continue;
+            }
+            if(isThirdDown){
+                if(line == 2 && shelf >= 5)
+                    continue;
+            }
+            if(isFourthUp){
+                if(line == 3 && shelf < 5)
+                    continue;
+            }
+            if(isFourthDown){
+                if(line == 3 && shelf >= 5)
+                    continue;
+            }
+            if(isFifthUp){
+                if(line == 4 && shelf < 5)
+                    continue;
+            }
+            if(isFifthDown){
+                if(line == 4 && shelf >= 5)
+                    continue;
+            }
+            if(isSixthUp){
+                if(line == 5 && shelf < 5)
+                    continue;
+            }
+            if(isSixthDown){
+                if(line == 5 && shelf >= 5)
+                    continue;
+            }
+            if(isSeventhUp){
+                if(line == 6 && shelf < 5)
+                    continue;
+            }
+            if(isSeventhDown){
+                if(line == 6 && shelf >= 5)
+                    continue;
+            }
+            if(isEighthUp){
+                if(line == 7 && shelf < 5)
+                    continue;
+            }
+            if(isEighthDown){
+                if(line == 7 && shelf >= 5)
+                    continue;
+            }
+
+
             if(count + Integer.parseInt(Main.countGoodsRequest.get(m)) > 10 || m == Main.nameGoodsRequest.size() - 1){
                 if(m == Main.nameGoodsRequest.size() - 1){
                     nameGoodsRequest.add(Main.nameGoodsRequest.get(m));
                     countGoodsRequest.add(Main.countGoodsRequest.get(m));
                 }
-                System.out.println("vozik: " + nameGoodsRequest);
-                System.out.println("mnozstvi: " + countGoodsRequest);
+                System.out.println("Vozik: " + nameGoodsRequest);
+                System.out.println("Mnozstvi: " + countGoodsRequest);
                 count = 0;
                 c = 0;
                 indexOfRequest = 0;
