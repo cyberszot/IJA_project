@@ -6,3 +6,4 @@ Gril;1
 Rost;4
 Misky;2;
 Talire;2
+x;0
