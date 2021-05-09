@@ -1,3 +1,12 @@
+/**
+ * project IJA21
+ * date: 2021/04/13
+ * authors: xkyjov03    :   Dalibor Kyjovsky
+ *          xszotk07    :   Rene Szotkowski
+ *
+ * file: Controller.java
+ * Trida pro ovladani hlavniho rozhrani skladu
+ */
 package cz.vut.fit.ija21.controller;
 
 

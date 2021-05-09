@@ -5,6 +5,7 @@
  *          xszotk07    :   Rene Szotkowski
  *
  * file: Main.java
+ * Hlavni trida aplikace, ktera spusti okno s rozhranim a naplni sklad ze souboru
  */
 package cz.vut.fit.ija21.main;
 
@@ -27,14 +28,32 @@ import java.util.Scanner;
 
 public class Main extends Application{
 
+    /**
+     * list vsech zbozi ve skladu
+     */
     public static List<String> goodsInShelfs = new ArrayList<>();
+
+    /**
+     * list mnozstvi vseho zbozi ve skladu
+     */
     public static List<String> goodsInShelfsCount = new ArrayList<>();
 
+    /**
+     * list pozadovaneho zbozi
+     */
     public static List<String> nameGoodsRequest = new ArrayList<>();
+
+    /**
+     * list mnozstvi pozadovaneho zbozi
+     */
     public static List<String> countGoodsRequest = new ArrayList<>();
 
 
-
+    /**
+     *
+     * @param primaryStage hlavni okno aplikace
+     * @throws Exception vyjimka pri otevirani souboru s rozhranim skladu sample.fxml
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("sample.fxml")));

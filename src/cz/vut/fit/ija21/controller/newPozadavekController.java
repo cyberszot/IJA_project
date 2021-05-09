@@ -1,3 +1,12 @@
+/**
+ * project IJA21
+ * date: 2021/04/13
+ * authors: xkyjov03    :   Dalibor Kyjovsky
+ *          xszotk07    :   Rene Szotkowski
+ *
+ * file: newPozadavekController.java
+ * Trida pro ovladani okna s novym uzivatelskym pozadavkem
+ */
 package cz.vut.fit.ija21.controller;
 
 import cz.vut.fit.ija21.main.Main;
