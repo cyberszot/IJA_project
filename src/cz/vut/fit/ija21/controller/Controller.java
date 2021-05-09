@@ -238,7 +238,7 @@ public class Controller implements Initializable {
     }
 
     /**
-     * Otevreni noveho okna po kliknuti na vozik nebo regal
+     * Probiha po kliknuti na vozik, regal nebo cestu na zablokovani
      * @param mouseEvent
      */
     public void onClickEvent(MouseEvent mouseEvent) {
@@ -375,8 +375,6 @@ public class Controller implements Initializable {
             }
 
 
-
-
             // po kliknuti na symbol voziku
             if(id.contains("vozik")){
                 Stage vozikWindow = new Stage();
@@ -388,16 +386,87 @@ public class Controller implements Initializable {
 
                 Integer count = 0;
                 Integer iterace = 0;
+                Integer shelf;
+                Integer line;
                 List<String> nameGoodsRequest = new ArrayList<>();
                 List<String> countGoodsRequest = new ArrayList<>();
 
                 // magic vybere jen veci ktere ma vozik podle id dovest
                 for (int m=0; m < Main.nameGoodsRequest.size(); m++){
-                    if(count + Integer.parseInt(Main.countGoodsRequest.get(m)) > 10 || m == Main.nameGoodsRequest.size() - 1){
-                        if(m == Main.nameGoodsRequest.size() - 1){
-                            nameGoodsRequest.add(Main.nameGoodsRequest.get(m));
-                            countGoodsRequest.add(Main.countGoodsRequest.get(m));
+                    // omezeni podle zablokovane cesty
+                    if(allIndexGoodsRequest.get(m) != 999) {
+                        shelf = allIndexGoodsRequest.get(m) % 10;
+                        line = allIndexGoodsRequest.get(m) / 20;
+                        // omezeni podle zablokovane trasy
+                        if (isFirstUp) {
+                            if(line != 0 || shelf >= 5)
+                                continue;
                         }
+                        if (isFirstDown) {
+                            if(line == 0 && shelf >= 5){
+                                continue;
+                            }
+                        }
+                        if (isSecondUp) {
+                            if (line == 1 && shelf < 5)
+                                continue;
+                        }
+                        if (isSecondDown) {
+                            if (line == 1 && shelf >= 5) {
+                                continue;
+                            }
+                        }
+                        if (isThirdUp) {
+                            if (line == 2 && shelf < 5)
+                                continue;
+                        }
+                        if (isThirdDown) {
+                            if (line == 2 && shelf >= 5)
+                                continue;
+                        }
+                        if (isFourthUp) {
+                            if (line == 3 && shelf < 5)
+                                continue;
+                        }
+                        if (isFourthDown) {
+                            if (line == 3 && shelf >= 5)
+                                continue;
+                        }
+                        if (isFifthUp) {
+                            if (line == 4 && shelf < 5)
+                                continue;
+                        }
+                        if (isFifthDown) {
+                            if (line == 4 && shelf >= 5)
+                                continue;
+                        }
+                        if (isSixthUp) {
+                            if (line == 5 && shelf < 5)
+                                continue;
+                        }
+                        if (isSixthDown) {
+                            if (line == 5 && shelf >= 5)
+                                continue;
+                        }
+                        if (isSeventhUp) {
+                            if (line == 6 && shelf < 5)
+                                continue;
+                        }
+                        if (isSeventhDown) {
+                            if (line == 6 && shelf >= 5)
+                                continue;
+                        }
+                        if (isEighthUp) {
+                            if (line == 7 && shelf < 5)
+                                continue;
+                        }
+                        if (isEighthDown) {
+                            if (line == 7 && shelf >= 5)
+                                continue;
+                        }
+                    }
+
+                    if(count + Integer.parseInt(Main.countGoodsRequest.get(m)) > 10 || allIndexGoodsRequest.get(m) == 999){
                         iterace++;
                         if(iterace > vozikID)
                             break;
@@ -665,6 +734,8 @@ public class Controller implements Initializable {
                 if(m != Main.nameGoodsRequest.size() - 1)
                     m--;
                 obsluhaPozadavku(indexGoodsRequest);
+                System.out.println(nameGoodsRequest);
+                System.out.println(countGoodsRequest);
                 nameGoodsRequest.clear();
                 countGoodsRequest.clear();
                 indexGoodsRequest.clear();
