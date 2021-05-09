@@ -14,7 +14,6 @@ import javafx.animation.PathTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -45,7 +44,6 @@ import java.net.URL;
 
 /**
  * Ovladani uzivatelskeho rozhrani
- * @author vsichni
  */
 public class Controller implements Initializable {
     @FXML
@@ -88,6 +86,7 @@ public class Controller implements Initializable {
 
     // V proměnné pozadavekFile je uložen název souboru s požadavky.
     public String pozadavekFile;
+    // urcuje rychlost pohybu
     public int SpeedOfCoolVoziku = 3;
 
     /**
