@@ -84,7 +84,7 @@ public class Controller implements Initializable {
     public boolean isEighthDown = false;
     public Integer vuzIndex = 0;
     public List<Integer> allIndexGoodsRequest = new ArrayList<>();
-
+    double zoom = 1.00;
 
     // V proměnné pozadavekFile je uložen název souboru s požadavky.
     public String pozadavekFile;
@@ -115,6 +115,11 @@ public class Controller implements Initializable {
         eighthDown.setFill(Color.BLUE);
     }
 
+
+    /**
+     * Vytvori novy vuz, ktery prida na rozhrani a dale pro nej necha vytvorit cestu
+     * @param indexGoodsRequest list indexu regalu, ktere se maji obslouzit danym vozem
+     */
     public void obsluhaPozadavku(List<Integer> indexGoodsRequest) {
         Circle vuz = new Circle(92.0, 10.0, 13, Color.RED);
         vuz.setId("vozik:" + vuzIndex);
@@ -350,7 +355,7 @@ public class Controller implements Initializable {
         isEighthDown = false;
     }
 
-    double zoom = 1.00;
+
 
     /**
      * Zaplneni skladu ze souboru goods.txt
