@@ -146,19 +146,6 @@ public class Controller implements Initializable {
     }
 
     /**
-     * Zobrazi napovedu aplikace
-     * @throws Exception otevirani noveho okna
-     */
-    @FXML protected void handleHelpButtonAction() throws Exception{
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("help.fxml")));
-        Stage help = new Stage();
-        help.setTitle("About ija-app");
-        help.setScene(new Scene(root, 420, 260));
-        help.show();
-        help.setResizable(false);
-    }
-
-    /**
      * Otevre okno pro zadani uzivatelskeho pozadavku
      * @throws IOException otevirani noveho okna
      */
@@ -327,6 +314,38 @@ public class Controller implements Initializable {
         Main.goodsInShelfs.clear();
         Main.goodsInShelfsCount.clear();
         zaplSklad();
+        firstUp.setFill(Color.BLUE);
+        secondUp.setFill(Color.BLUE);
+        thirdUp.setFill(Color.BLUE);
+        fourthUp.setFill(Color.BLUE);
+        fifthUp.setFill(Color.BLUE);
+        sixthUp.setFill(Color.BLUE);
+        seventhUp.setFill(Color.BLUE);
+        eighthUp.setFill(Color.BLUE);
+        firstDown.setFill(Color.BLUE);
+        secondDown.setFill(Color.BLUE);
+        thirdDown.setFill(Color.BLUE);
+        fourthDown.setFill(Color.BLUE);
+        fifthDown.setFill(Color.BLUE);
+        sixthDown.setFill(Color.BLUE);
+        seventhDown.setFill(Color.BLUE);
+        eighthDown.setFill(Color.BLUE);
+        isFirstUp = false;
+        isSecondUp = false;
+        isThirdUp = false;
+        isFourthUp = false;
+        isFifthUp = false;
+        isSixthUp = false;
+        isSeventhUp = false;
+        isEighthUp = false;
+        isFirstDown = false;
+        isSecondDown = false;
+        isThirdDown = false;
+        isFourthDown = false;
+        isFifthDown = false;
+        isSixthDown = false;
+        isSeventhDown = false;
+        isEighthDown = false;
     }
 
     /**
@@ -708,11 +727,6 @@ public class Controller implements Initializable {
                 countGoodsRequest.add(Main.countGoodsRequest.get(m));
             }
         }
-    }
-
-    public void start(float time_c)
-    {
-
     }
 
     /**

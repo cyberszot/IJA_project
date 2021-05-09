@@ -23,11 +23,6 @@
                   <MenuItem mnemonicParsing="false" onAction="#handleQuitButtonAction" text="Quit" />
           </items>
         </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-          <items>
-            <MenuItem mnemonicParsing="false" onAction="#handleHelpButtonAction" text="About ija-app" />
-          </items>
-        </Menu>
       </menus>
     </MenuBar>
     <AnchorPane fx:id="root" onMouseClicked="#onClickEvent" prefHeight="425.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
