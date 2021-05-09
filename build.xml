@@ -16,6 +16,9 @@
     </target>
 
     <target name="compile" description="compile application" depends="clean">
+        <exec executable="/bin/bash">
+            <arg value="lib/get-libs.sh"/>
+        </exec>
         <mkdir dir="build"/>
         <javac srcdir="src" destdir="build" includeantruntime="false">
             <modulepath path="lib/javafx-sdk-16/lib"/>
