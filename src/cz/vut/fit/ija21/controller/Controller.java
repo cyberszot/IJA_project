@@ -192,6 +192,8 @@ public class Controller implements Initializable {
 
             // posun voziku na pozici regalu v rade
             polyline.getPoints().addAll(defaultPositionX + lineOffset * nextLine, defaultPositionY + shelfOffset * shelf);
+            polyline.getPoints().addAll(defaultPositionX + lineOffset * nextLine, defaultPositionY + shelfOffset * shelf);
+            polyline.getPoints().addAll(defaultPositionX + lineOffset * nextLine, defaultPositionY + shelfOffset * shelf);
         }
 
         // homerun
@@ -374,7 +376,6 @@ public class Controller implements Initializable {
                 return;
             }
 
-
             // po kliknuti na symbol voziku
             if(id.contains("vozik")){
                 Stage vozikWindow = new Stage();
@@ -389,7 +390,6 @@ public class Controller implements Initializable {
                 Integer shelf;
                 Integer line;
                 List<String> nameGoodsRequest = new ArrayList<>();
-                List<String> countGoodsRequest = new ArrayList<>();
 
                 // magic vybere jen veci ktere ma vozik podle id dovest
                 for (int m=0; m < Main.nameGoodsRequest.size(); m++){
@@ -477,14 +477,13 @@ public class Controller implements Initializable {
                     else{
                         count += Integer.parseInt(Main.countGoodsRequest.get(m));
                         if(iterace.equals(vozikID)) {
-                            nameGoodsRequest.add(Main.nameGoodsRequest.get(m));
-                            countGoodsRequest.add(Main.countGoodsRequest.get(m));
+                            nameGoodsRequest.add(Main.nameGoodsRequest.get(m) + ", " + Main.countGoodsRequest.get(m) + "\n");
                         }
                     }
                 }
 
                 // naplni list pripravenyma vecma
-                list.addAll(nameGoodsRequest, countGoodsRequest);
+                list.addAll(nameGoodsRequest);
                 goodsNameCountList.getItems().addAll(list);
 
                 // vytvoreni noveho okna s listem veci na dovoz
@@ -493,11 +492,12 @@ public class Controller implements Initializable {
                 contain.setPadding(new Insets(15));
                 contain.setAlignment(Pos.CENTER_LEFT);
 
-                vozikWindow.setScene(new Scene(contain, 250, 100));
+                vozikWindow.setScene(new Scene(contain, 150, 150));
                 vozikWindow.show();
                 vozikWindow.setResizable(false);
                 return;
             }
+
             Integer shelfID = Integer.valueOf(mouseEvent.getPickResult().getIntersectedNode().getId()); //returns JUST the id of the object that was clicked
             Stage shelfWindow = new Stage();
             shelfWindow.setTitle("shelf id: " + shelfID);
@@ -565,7 +565,7 @@ public class Controller implements Initializable {
     /**
      * Zpracovani pozadavku ze souboru
      */
-    public void zpracujPozadavek() throws IOException {
+    public void zpracujPozadavek() {
         Main.nameGoodsRequest.clear();
         Main.countGoodsRequest.clear();
         Path path = Paths.get("");
@@ -734,8 +734,6 @@ public class Controller implements Initializable {
                 if(m != Main.nameGoodsRequest.size() - 1)
                     m--;
                 obsluhaPozadavku(indexGoodsRequest);
-                System.out.println(nameGoodsRequest);
-                System.out.println(countGoodsRequest);
                 nameGoodsRequest.clear();
                 countGoodsRequest.clear();
                 indexGoodsRequest.clear();

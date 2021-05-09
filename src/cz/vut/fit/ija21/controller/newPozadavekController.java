@@ -12,6 +12,7 @@ import cz.vut.fit.ija21.main.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -90,11 +91,10 @@ public class newPozadavekController implements Initializable {
      */
     public void zpracujPozadavek(MouseEvent mouseEvent) {
         // Zavre okno
+        Main.nameGoodsRequest.add("x");
+        Main.countGoodsRequest.add("0");
         Stage stage = (Stage) ((Button) mouseEvent.getSource()).getScene().getWindow();
         stage.close();
-
-        Controller instance = new Controller();
-        instance.zaplnVoziky();
     }
 
 }
