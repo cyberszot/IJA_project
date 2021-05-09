@@ -88,10 +88,13 @@ public class Controller implements Initializable {
 
     // V proměnné pozadavekFile je uložen název souboru s požadavky.
     public String pozadavekFile;
-    public int SpeedOfCoolVoziku = 30;
-    public int pause = 0;
+    public int SpeedOfCoolVoziku = 3;
 
-
+    /**
+     * Nastaveni potrebnych prepinacu po inicializaci
+     * @param location
+     * @param resources
+     */
     public void initialize(URL location, ResourceBundle resources) {
         firstUp.setFill(Color.BLUE);
         secondUp.setFill(Color.BLUE);
@@ -116,98 +119,17 @@ public class Controller implements Initializable {
         vuz.setId("vozik:" + vuzIndex);
         vuzIndex++;
         root.getChildren().add(vuz);
-        int actualLine = 0;
-        int nextLine = 0;
-        int shelf;
-        double defaultPositionX = 92.00;
-        double defaultPositionY;
-        double shelfOffset = 30.00;
-        double lineOffset = 65.00;
-        double center = 180.00;
-
-
-        Collections.sort(indexGoodsRequest);
-        Polyline polyline = new Polyline();
-        polyline.getPoints().addAll(92.0, 10.0);
-
-        // obsluha cesty
-        for (Integer integer : indexGoodsRequest) {
-            shelf = integer % 10;
-            if (shelf / 5 == 0) defaultPositionY = 35.00;
-            else defaultPositionY = 50.00;
-            if (integer / 20 == 0) {       // 1. rada
-                nextLine = 0;
-                // dalsi pozadavek je v jine rade
-                if (nextLine != actualLine)
-                    polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
-                actualLine = 0;
-            }
-            if (integer / 20 == 1) {       // 2. rada
-                nextLine = 1;
-                // dalsi pozadavek je v jine rade
-                if (nextLine != actualLine)
-                    polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
-                actualLine = 1;
-            }
-            if (integer / 20 == 2) {       // 3. rada
-                nextLine = 2;
-                // dalsi pozadavek je v jine rade
-                if (nextLine != actualLine)
-                    polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
-                actualLine = 2;
-            }
-            if (integer / 20 == 3) {       // 4. rada
-                nextLine = 3;
-                // dalsi pozadavek je v jine rade
-                if (nextLine != actualLine)
-                    polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
-                actualLine = 3;
-            }
-            if (integer / 20 == 4) {       // 5. rada
-                nextLine = 4;
-                // dalsi pozadavek je v jine rade
-                if (nextLine != actualLine)
-                    polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
-                actualLine = 4;
-            }
-            if (integer / 20 == 5) {       // 6. rada
-                nextLine = 5;
-                // dalsi pozadavek je v jine rade
-                if (nextLine != actualLine)
-                    polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
-                actualLine = 5;
-            }
-            if (integer / 20 == 6) {       // 7. rada
-                nextLine = 6;
-                // dalsi pozadavek je v jine rade
-                if (nextLine != actualLine)
-                    polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
-                actualLine = 6;
-            }
-            if (integer / 20 == 7) {       // 8. rada
-                nextLine = 7;
-                // dalsi pozadavek je v jine rade
-                if (nextLine != actualLine)
-                    polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
-                actualLine = 7;
-            }
-
-            // posun voziku na pozici regalu v rade
-            polyline.getPoints().addAll(defaultPositionX + lineOffset * nextLine, defaultPositionY + shelfOffset * shelf);
-        }
-
-        // homerun
-        nextLine = 0;
-        if(nextLine != actualLine) polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
-        polyline.getPoints().addAll(defaultPositionX + lineOffset * nextLine, 10.00);
-
-        PathTransition pathTransition = new PathTransition();
-        pathTransition.setDuration(Duration.seconds(SpeedOfCoolVoziku*(actualLine+1)));
-        pathTransition.setNode(vuz);
-        pathTransition.setPath(polyline);
-        pathTransition.play();
+        vytvorCestu(indexGoodsRequest, vuz);
     }
 
+    /**
+     * Posune vozik na danou radu
+     * @param polyline trasa animace
+     * @param X1 x souradnice aktualni rady
+     * @param X2 x souradnice dalsi rady
+     * @param Y y souradnice prostredni cesty
+     * @return vraci upravenou trasu pro pohyb do dalsi rady
+     */
     public Polyline moveToLine(Polyline polyline, double X1, double X2, double Y){
         // nastaveni voziku na stred rady
         polyline.getPoints().addAll(X1, Y);
@@ -217,10 +139,17 @@ public class Controller implements Initializable {
         return polyline;
     }
 
+    /**
+     * Vypne aplikaci
+     */
     @FXML protected void handleQuitButtonAction(){
         Platform.exit();
     }
 
+    /**
+     * Zobrazi napovedu aplikace
+     * @throws Exception otevirani noveho okna
+     */
     @FXML protected void handleHelpButtonAction() throws Exception{
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("help.fxml")));
         Stage help = new Stage();
@@ -230,6 +159,10 @@ public class Controller implements Initializable {
         help.setResizable(false);
     }
 
+    /**
+     * Otevre okno pro zadani uzivatelskeho pozadavku
+     * @throws IOException otevirani noveho okna
+     */
     @FXML public void handleMakePozadavek() throws IOException {
         Parent koren = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("newpozadavek.fxml")));
         Stage newPozadavek = new Stage();
@@ -240,12 +173,12 @@ public class Controller implements Initializable {
 
     /**
      * Otevreni noveho okna po kliknuti na vozik nebo regal
-     * @param mouseEvent
+     * @param mouseEvent parametr podle ktereho se zjisti id kliknuteho objektu
      */
     public void onClickEvent(MouseEvent mouseEvent) {
         String id = mouseEvent.getPickResult().getIntersectedNode().getId();
         if(!id.equals("null")){
-            // po kliknuti na zabranu firstUp se nastavi prepinac isFirstUp a zmeni barva pro indikaci atd pro ostatni
+            // po kliknuti na danou blokaci se prepne prepinac a nastavi se jina barva
             if(id.equals("firstUp")){
                 isFirstUp = !isFirstUp;
                 if(firstUp.getFill().equals(Color.BLUE))
@@ -377,155 +310,33 @@ public class Controller implements Initializable {
 
             // po kliknuti na symbol voziku
             if(id.contains("vozik")){
-                Stage vozikWindow = new Stage();
-                ListView<String> goodsNameCountList = new ListView<>();
-                ObservableList list = FXCollections.observableArrayList();
                 Integer vozikID = Integer.parseInt(id.split(":")[1]);
-
-                vozikWindow.setTitle("vozik: " + vozikID);
-
-                Integer count = 0;
-                Integer iterace = 0;
-                Integer shelf;
-                Integer line;
-                List<String> nameGoodsRequest = new ArrayList<>();
-
-                // magic vybere jen veci ktere ma vozik podle id dovest
-                for (int m=0; m < Main.nameGoodsRequest.size(); m++){
-                    // omezeni podle zablokovane cesty
-                    if(allIndexGoodsRequest.get(m) != 999) {
-                        shelf = allIndexGoodsRequest.get(m) % 10;
-                        line = allIndexGoodsRequest.get(m) / 20;
-                        // omezeni podle zablokovane trasy
-                        if (isFirstUp) {
-                            if(line != 0 || shelf >= 5)
-                                continue;
-                        }
-                        if (isFirstDown) {
-                            if(line == 0 && shelf >= 5){
-                                continue;
-                            }
-                        }
-                        if (isSecondUp) {
-                            if (line == 1 && shelf < 5)
-                                continue;
-                        }
-                        if (isSecondDown) {
-                            if (line == 1 && shelf >= 5) {
-                                continue;
-                            }
-                        }
-                        if (isThirdUp) {
-                            if (line == 2 && shelf < 5)
-                                continue;
-                        }
-                        if (isThirdDown) {
-                            if (line == 2 && shelf >= 5)
-                                continue;
-                        }
-                        if (isFourthUp) {
-                            if (line == 3 && shelf < 5)
-                                continue;
-                        }
-                        if (isFourthDown) {
-                            if (line == 3 && shelf >= 5)
-                                continue;
-                        }
-                        if (isFifthUp) {
-                            if (line == 4 && shelf < 5)
-                                continue;
-                        }
-                        if (isFifthDown) {
-                            if (line == 4 && shelf >= 5)
-                                continue;
-                        }
-                        if (isSixthUp) {
-                            if (line == 5 && shelf < 5)
-                                continue;
-                        }
-                        if (isSixthDown) {
-                            if (line == 5 && shelf >= 5)
-                                continue;
-                        }
-                        if (isSeventhUp) {
-                            if (line == 6 && shelf < 5)
-                                continue;
-                        }
-                        if (isSeventhDown) {
-                            if (line == 6 && shelf >= 5)
-                                continue;
-                        }
-                        if (isEighthUp) {
-                            if (line == 7 && shelf < 5)
-                                continue;
-                        }
-                        if (isEighthDown) {
-                            if (line == 7 && shelf >= 5)
-                                continue;
-                        }
-                    }
-
-                    if(count + Integer.parseInt(Main.countGoodsRequest.get(m)) > 10 || allIndexGoodsRequest.get(m) == 999){
-                        iterace++;
-                        if(iterace > vozikID)
-                            break;
-                        count=0;
-                        if(m != Main.nameGoodsRequest.size() - 1)
-                            m--;
-                    }
-                    else{
-                        count += Integer.parseInt(Main.countGoodsRequest.get(m));
-                        if(iterace.equals(vozikID)) {
-                            nameGoodsRequest.add(Main.nameGoodsRequest.get(m) + ", " + Main.countGoodsRequest.get(m) + "\n");
-                        }
-                    }
-                }
-
-                // naplni list pripravenyma vecma
-                list.addAll(nameGoodsRequest);
-                goodsNameCountList.getItems().addAll(list);
-
-                // vytvoreni noveho okna s listem veci na dovoz
-                VBox contain = new VBox(goodsNameCountList);
-                contain.setSpacing(15);
-                contain.setPadding(new Insets(15));
-                contain.setAlignment(Pos.CENTER_LEFT);
-
-                vozikWindow.setScene(new Scene(contain, 150, 150));
-                vozikWindow.show();
-                vozikWindow.setResizable(false);
+                kliknutiNaVozik(vozikID);
                 return;
             }
 
-            Integer shelfID = Integer.valueOf(mouseEvent.getPickResult().getIntersectedNode().getId()); //returns JUST the id of the object that was clicked
-            Stage shelfWindow = new Stage();
-            shelfWindow.setTitle("shelf id: " + shelfID);
-
-            Label goodsTypeText = new Label("Zboží: " + Main.goodsInShelfs.get(shelfID));
-            Label goodsAmountText = new Label("Počet kusů: " + Main.goodsInShelfsCount.get(shelfID));
-
-            VBox container = new VBox(goodsTypeText, goodsAmountText);
-            container.setSpacing(15);
-            container.setPadding(new Insets(15));
-            container.setAlignment(Pos.CENTER_LEFT);
-
-            shelfWindow.setScene(new Scene(container, 250, 100));
-            shelfWindow.show();
-            shelfWindow.setResizable(false);
+            // po kliknuti na regal
+            Integer shelfID = Integer.valueOf(mouseEvent.getPickResult().getIntersectedNode().getId()); // vraci id regalu
+            kliknutiNaRegal(shelfID);
         }
     }
 
     /**
-     * Vraceni zaplneni skladu na vychozi hodnotu
+     * Vraceni skladu na zacatecni stav
      */
     public void handleResetButton() {
         Main.goodsInShelfs.clear();
         Main.goodsInShelfsCount.clear();
+        zaplSklad();
+    }
 
+    /**
+     * Zaplneni skladu ze souboru goods.txt
+     */
+    public void zaplSklad(){
         Path path = Paths.get("");
         path = path.toAbsolutePath();
         String cesta = path.toString();
-
         try {
             File obj = new File(cesta + "/data/goods.txt");
             Scanner myScanner = new Scanner(obj);
@@ -546,53 +357,14 @@ public class Controller implements Initializable {
         }
     }
 
-    public void handlePozadavek1() throws IOException {
-        pozadavekFile = "pozadavky1.txt";
-        zpracujPozadavek();
-    }
-
-    public void handlePozadavek2() throws IOException {
-        pozadavekFile = "pozadavky2.txt";
-        zpracujPozadavek();
-    }
-
-    public void handlePozadavek3() throws IOException {
-        pozadavekFile = "pozadavky3.txt";
-        zpracujPozadavek();
-    }
-    public void handleSpeed1() {
-        SpeedOfCoolVoziku = 7;
-    }
-
-    public void handleSpeed2() {
-        SpeedOfCoolVoziku = 5;
-    }
-
-    public void handleSpeed3() {
-        SpeedOfCoolVoziku = 3;
-    }
-
-    public void handleSpeed4() {
-        SpeedOfCoolVoziku = 1;
-    }
-
-    public void handlePauseButton() {
-        pause = 1;
-    }
-
     /**
-     * Zpracovani pozadavku ze souboru
+     * Cteni pozadavku ze souboru
      */
-    public void zpracujPozadavek() {
-        Main.nameGoodsRequest.clear();
-        Main.countGoodsRequest.clear();
+    public void prectiPozadavek(){
         Path path = Paths.get("");
         path = path.toAbsolutePath();
         String cesta = path.toString();
-
-
         try {
-
             File obj = new File(cesta + "/data/" + pozadavekFile);
             Scanner scannerPozadavek = new Scanner(obj);
             while (scannerPozadavek.hasNextLine()) {
@@ -601,14 +373,189 @@ public class Controller implements Initializable {
 
                 Main.nameGoodsRequest.add(zboziP[0]);
                 Main.countGoodsRequest.add(zboziP[1]);
-
             }
             scannerPozadavek.close();
         } catch (FileNotFoundException e) {
             System.out.println("Nastala chyba pri otevirani souboru s pozadavky.");
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Zpracovani pozadavku ze souboru, tlacitko 1
+     */
+    public void handlePozadavek1() {
+        pozadavekFile = "pozadavky1.txt";
+        zpracujPozadavek();
+    }
+
+    /**
+     * Zpracovani pozadavku ze souboru, tlacitko 2
+     */
+    public void handlePozadavek2() {
+        pozadavekFile = "pozadavky2.txt";
+        zpracujPozadavek();
+    }
+
+    /**
+     * Zpracovani pozadavku ze souboru, tlacitko 3
+     */
+    public void handlePozadavek3() {
+        pozadavekFile = "pozadavky3.txt";
+        zpracujPozadavek();
+    }
+
+    /**
+     * Zmena rychlosti animace, tlacitko 1
+     */
+    public void handleSpeed1() {
+        SpeedOfCoolVoziku = 7;
+    }
+
+    /**
+     * Zmena rychlosti animace, tlacitko 2
+     */
+    public void handleSpeed2() {
+        SpeedOfCoolVoziku = 5;
+    }
+
+    /**
+     * Zmena rychlosti animace, tlacitko 3
+     */
+    public void handleSpeed3() {
+        SpeedOfCoolVoziku = 3;
+    }
+
+    /**
+     * Zmena rychlosti animace, tlacitko 4
+     */
+    public void handleSpeed4() {
+        SpeedOfCoolVoziku = 1;
+    }
+
+    /**
+     * Zpracovani pozadavku ze souboru
+     */
+    public void zpracujPozadavek() {
+        Main.nameGoodsRequest.clear();
+        Main.countGoodsRequest.clear();
+        prectiPozadavek();
         zaplnVoziky();
+    }
+
+    /**
+     * Otevre okno se zbozim v regalu a jeho mnozstvim
+     * @param shelfID id kliknuteho regalu
+     */
+    public void kliknutiNaRegal(Integer shelfID) {
+        Stage shelfWindow = new Stage();
+        shelfWindow.setTitle("shelf id: " + shelfID);
+
+        Label goodsTypeText = new Label("Zboží: " + Main.goodsInShelfs.get(shelfID));
+        Label goodsAmountText = new Label("Počet kusů: " + Main.goodsInShelfsCount.get(shelfID));
+
+        VBox container = new VBox(goodsTypeText, goodsAmountText);
+        container.setSpacing(15);
+        container.setPadding(new Insets(15));
+        container.setAlignment(Pos.CENTER_LEFT);
+
+        shelfWindow.setScene(new Scene(container, 250, 100));
+        shelfWindow.show();
+        shelfWindow.setResizable(false);
+    }
+
+
+    public void vytvorCestu(List<Integer> indexGoodsRequest, Circle vuz) {
+        int actualLine = 0;
+        int nextLine = 0;
+        int shelf;
+        double defaultPositionX = 92.00;
+        double defaultPositionY;
+        double shelfOffset = 30.00;
+        double lineOffset = 65.00;
+        double center = 180.00;
+
+
+        Collections.sort(indexGoodsRequest);
+        Polyline polyline = new Polyline();
+        polyline.getPoints().addAll(92.0, 10.0);
+
+        // obsluha cesty
+        for (Integer integer : indexGoodsRequest) {
+            shelf = integer % 10;
+            if (shelf / 5 == 0) defaultPositionY = 35.00;
+            else defaultPositionY = 50.00;
+            if (integer / 20 == 0) {       // 1. rada
+                nextLine = 0;
+                // dalsi pozadavek je v jine rade
+                if (nextLine != actualLine)
+                    polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+                actualLine = 0;
+            }
+            if (integer / 20 == 1) {       // 2. rada
+                nextLine = 1;
+                // dalsi pozadavek je v jine rade
+                if (nextLine != actualLine)
+                    polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+                actualLine = 1;
+            }
+            if (integer / 20 == 2) {       // 3. rada
+                nextLine = 2;
+                // dalsi pozadavek je v jine rade
+                if (nextLine != actualLine)
+                    polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+                actualLine = 2;
+            }
+            if (integer / 20 == 3) {       // 4. rada
+                nextLine = 3;
+                // dalsi pozadavek je v jine rade
+                if (nextLine != actualLine)
+                    polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+                actualLine = 3;
+            }
+            if (integer / 20 == 4) {       // 5. rada
+                nextLine = 4;
+                // dalsi pozadavek je v jine rade
+                if (nextLine != actualLine)
+                    polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+                actualLine = 4;
+            }
+            if (integer / 20 == 5) {       // 6. rada
+                nextLine = 5;
+                // dalsi pozadavek je v jine rade
+                if (nextLine != actualLine)
+                    polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+                actualLine = 5;
+            }
+            if (integer / 20 == 6) {       // 7. rada
+                nextLine = 6;
+                // dalsi pozadavek je v jine rade
+                if (nextLine != actualLine)
+                    polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+                actualLine = 6;
+            }
+            if (integer / 20 == 7) {       // 8. rada
+                nextLine = 7;
+                // dalsi pozadavek je v jine rade
+                if (nextLine != actualLine)
+                    polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+                actualLine = 7;
+            }
+
+            // posun voziku na pozici regalu v rade
+            polyline.getPoints().addAll(defaultPositionX + lineOffset * nextLine, defaultPositionY + shelfOffset * shelf);
+        }
+
+        // homerun
+        nextLine = 0;
+        if(nextLine != actualLine) polyline = moveToLine(polyline, defaultPositionX + lineOffset * actualLine, defaultPositionX + lineOffset * nextLine, center);
+        polyline.getPoints().addAll(defaultPositionX + lineOffset * nextLine, 10.00);
+
+        PathTransition pathTransition = new PathTransition();
+        pathTransition.setDuration(Duration.seconds(SpeedOfCoolVoziku*(actualLine+1)));
+        pathTransition.setNode(vuz);
+        pathTransition.setPath(polyline);
+        pathTransition.play();
     }
 
     /**
@@ -769,6 +716,134 @@ public class Controller implements Initializable {
 
     }
 
+    /**
+     * Spusteni uzivatelskeho pozadavku
+     */
+    public void spustitUzPozadavek() {
+        zaplnVoziky();
+    }
 
+    /**
+     * Otevre okno po kliknuti na symbol voziku se zbozim, mnozstvim a jeho cestou
+     * @param vozikID id daneho voziku
+     */
+    public void kliknutiNaVozik(Integer vozikID) {
+        Stage vozikWindow = new Stage();
+        ListView<String> goodsNameCountList = new ListView<>();
+        ObservableList list = FXCollections.observableArrayList();
+
+        vozikWindow.setTitle("vozik: " + vozikID);
+
+        Integer count = 0;
+        Integer iterace = 0;
+        Integer shelf;
+        Integer line;
+        List<String> nameGoodsRequest = new ArrayList<>();
+
+        // vybere jen veci ktere ma vozik podle id dovest
+        for (int m=0; m < Main.nameGoodsRequest.size(); m++){
+            // omezeni podle zablokovane cesty
+            if(allIndexGoodsRequest.get(m) != 999) {
+                shelf = allIndexGoodsRequest.get(m) % 10;
+                line = allIndexGoodsRequest.get(m) / 20;
+                // omezeni podle zablokovane trasy
+                if (isFirstUp) {
+                    if(line != 0 || shelf >= 5)
+                        continue;
+                }
+                if (isFirstDown) {
+                    if(line == 0 && shelf >= 5){
+                        continue;
+                    }
+                }
+                if (isSecondUp) {
+                    if (line == 1 && shelf < 5)
+                        continue;
+                }
+                if (isSecondDown) {
+                    if (line == 1 && shelf >= 5) {
+                        continue;
+                    }
+                }
+                if (isThirdUp) {
+                    if (line == 2 && shelf < 5)
+                        continue;
+                }
+                if (isThirdDown) {
+                    if (line == 2 && shelf >= 5)
+                        continue;
+                }
+                if (isFourthUp) {
+                    if (line == 3 && shelf < 5)
+                        continue;
+                }
+                if (isFourthDown) {
+                    if (line == 3 && shelf >= 5)
+                        continue;
+                }
+                if (isFifthUp) {
+                    if (line == 4 && shelf < 5)
+                        continue;
+                }
+                if (isFifthDown) {
+                    if (line == 4 && shelf >= 5)
+                        continue;
+                }
+                if (isSixthUp) {
+                    if (line == 5 && shelf < 5)
+                        continue;
+                }
+                if (isSixthDown) {
+                    if (line == 5 && shelf >= 5)
+                        continue;
+                }
+                if (isSeventhUp) {
+                    if (line == 6 && shelf < 5)
+                        continue;
+                }
+                if (isSeventhDown) {
+                    if (line == 6 && shelf >= 5)
+                        continue;
+                }
+                if (isEighthUp) {
+                    if (line == 7 && shelf < 5)
+                        continue;
+                }
+                if (isEighthDown) {
+                    if (line == 7 && shelf >= 5)
+                        continue;
+                }
+            }
+
+            if(count + Integer.parseInt(Main.countGoodsRequest.get(m)) > 10 || allIndexGoodsRequest.get(m) == 999){
+                iterace++;
+                if(iterace > vozikID)
+                    break;
+                count=0;
+                if(m != Main.nameGoodsRequest.size() - 1)
+                    m--;
+            }
+            else{
+                count += Integer.parseInt(Main.countGoodsRequest.get(m));
+                if(iterace.equals(vozikID)) {
+                    nameGoodsRequest.add(Main.nameGoodsRequest.get(m) + ", " + Main.countGoodsRequest.get(m) + "\n");
+                }
+            }
+        }
+
+        // naplni list pripravenyma vecma
+        list.addAll(nameGoodsRequest);
+        goodsNameCountList.getItems().addAll(list);
+
+        // vytvoreni noveho okna s listem veci na dovoz
+        VBox contain = new VBox(goodsNameCountList);
+        contain.setSpacing(15);
+        contain.setPadding(new Insets(15));
+        contain.setAlignment(Pos.CENTER_LEFT);
+
+        vozikWindow.setScene(new Scene(contain, 150, 150));
+        vozikWindow.show();
+        vozikWindow.setResizable(false);
+    }
 }
 
