@@ -1,4 +1,4 @@
-Stul;1
+Stolik;1
 Kreslo;2
 Pohovka;1
 Skrin;1
