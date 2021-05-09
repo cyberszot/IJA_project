@@ -50,7 +50,40 @@ import java.net.URL;
 public class Controller implements Initializable {
     @FXML
     public AnchorPane root;
+    @FXML public Rectangle firstUp;
+    @FXML public Rectangle secondUp;
+    @FXML public Rectangle thirdUp;
+    @FXML public Rectangle fourthUp;
+    @FXML public Rectangle fifthUp;
+    @FXML public Rectangle sixthUp;
+    @FXML public Rectangle seventhUp;
+    @FXML public Rectangle eighthUp;
+    @FXML public Rectangle firstDown;
+    @FXML public Rectangle secondDown;
+    @FXML public Rectangle thirdDown;
+    @FXML public Rectangle fourthDown;
+    @FXML public Rectangle fifthDown;
+    @FXML public Rectangle sixthDown;
+    @FXML public Rectangle seventhDown;
+    @FXML public Rectangle eighthDown;
+    public boolean isFirstUp = false;
+    public boolean isSecondUp = false;
+    public boolean isThirdUp = false;
+    public boolean isFourthUp = false;
+    public boolean isFifthUp = false;
+    public boolean isSixthUp = false;
+    public boolean isSeventhUp = false;
+    public boolean isEighthUp = false;
+    public boolean isFirstDown = false;
+    public boolean isSecondDown = false;
+    public boolean isThirdDown = false;
+    public boolean isFourthDown = false;
+    public boolean isFifthDown = false;
+    public boolean isSixthDown = false;
+    public boolean isSeventhDown = false;
+    public boolean isEighthDown = false;
     public Integer vuzIndex = 0;
+    public List<String> allIndexGoodsRequest = new ArrayList<>();
 
 
     // V proměnné pozadavekFile je uložen název souboru s požadavky.
@@ -58,9 +91,22 @@ public class Controller implements Initializable {
 
 
     public void initialize(URL location, ResourceBundle resources) {
-        // TODO Auto-generated method stub
-
-
+        firstUp.setFill(Color.BLUE);
+        secondUp.setFill(Color.BLUE);
+        thirdUp.setFill(Color.BLUE);
+        fourthUp.setFill(Color.BLUE);
+        fifthUp.setFill(Color.BLUE);
+        sixthUp.setFill(Color.BLUE);
+        seventhUp.setFill(Color.BLUE);
+        eighthUp.setFill(Color.BLUE);
+        firstDown.setFill(Color.BLUE);
+        secondDown.setFill(Color.BLUE);
+        thirdDown.setFill(Color.BLUE);
+        fourthDown.setFill(Color.BLUE);
+        fifthDown.setFill(Color.BLUE);
+        sixthDown.setFill(Color.BLUE);
+        seventhDown.setFill(Color.BLUE);
+        eighthDown.setFill(Color.BLUE);
     }
 
     public void obsluhaPozadavku(List<Integer> indexGoodsRequest) {
@@ -198,9 +244,144 @@ public class Controller implements Initializable {
     public void onClickEvent(MouseEvent mouseEvent) {
         String id = mouseEvent.getPickResult().getIntersectedNode().getId();
         if(!id.equals("null")){
+            // po kliknuti na zabranu firstUp se nastavi prepinac isFirstUp a zmeni barva pro indikaci atd pro ostatni
+            if(id.equals("firstUp")){
+                isFirstUp = !isFirstUp;
+                if(firstUp.getFill().equals(Color.BLUE))
+                    firstUp.setFill(Color.RED);
+                else
+                    firstUp.setFill(Color.BLUE);
+                return;
+            }
+            if(id.equals("secondUp")){
+                isSecondUp = !isSecondUp;
+                if(secondUp.getFill().equals(Color.BLUE))
+                    secondUp.setFill(Color.RED);
+                else
+                    secondUp.setFill(Color.BLUE);
+                return;
+            }
+            if(id.equals("thirdUp")){
+                isThirdUp = !isThirdUp;
+                if(thirdUp.getFill().equals(Color.BLUE))
+                    thirdUp.setFill(Color.RED);
+                else
+                    thirdUp.setFill(Color.BLUE);
+                return;
+            }
+            if(id.equals("fourthUp")){
+                isFourthUp = !isFourthUp;
+                if(fourthUp.getFill().equals(Color.BLUE))
+                    fourthUp.setFill(Color.RED);
+                else
+                    fourthUp.setFill(Color.BLUE);
+                return;
+            }
+            if(id.equals("fifthUp")){
+                isFifthUp = !isFifthUp;
+                if(fifthUp.getFill().equals(Color.BLUE))
+                    fifthUp.setFill(Color.RED);
+                else
+                    fifthUp.setFill(Color.BLUE);
+                return;
+            }
+            if(id.equals("sixthUp")){
+                isSixthUp = !isSixthUp;
+                if(sixthUp.getFill().equals(Color.BLUE))
+                    sixthUp.setFill(Color.RED);
+                else
+                    sixthUp.setFill(Color.BLUE);
+                return;
+            }
+            if(id.equals("seventhUp")){
+                isSeventhUp = !isSeventhUp;
+                if(seventhUp.getFill().equals(Color.BLUE))
+                    seventhUp.setFill(Color.RED);
+                else
+                    seventhUp.setFill(Color.BLUE);
+                return;
+            }
+            if(id.equals("eighthUp")){
+                isEighthUp = !isEighthUp;
+                if(eighthUp.getFill().equals(Color.BLUE))
+                    eighthUp.setFill(Color.RED);
+                else
+                    eighthUp.setFill(Color.BLUE);
+                return;
+            }
+            if(id.equals("firstDown")){
+                isFirstDown = !isFirstDown;
+                if(firstDown.getFill().equals(Color.BLUE))
+                    firstDown.setFill(Color.RED);
+                else
+                    firstDown.setFill(Color.BLUE);
+                return;
+            }
+            if(id.equals("secondDown")){
+                isSecondDown = !isSecondDown;
+                if(secondDown.getFill().equals(Color.BLUE))
+                    secondDown.setFill(Color.RED);
+                else
+                    secondDown.setFill(Color.BLUE);
+                return;
+            }
+            if(id.equals("thirdDown")){
+                isThirdDown = !isThirdDown;
+                if(thirdDown.getFill().equals(Color.BLUE))
+                    thirdDown.setFill(Color.RED);
+                else
+                    thirdDown.setFill(Color.BLUE);
+                return;
+            }
+            if(id.equals("fourthDown")){
+                isFourthDown = !isFourthDown;
+                if(fourthDown.getFill().equals(Color.BLUE))
+                    fourthDown.setFill(Color.RED);
+                else
+                    fourthDown.setFill(Color.BLUE);
+                return;
+            }
+            if(id.equals("fifthDown")){
+                isFifthDown = !isFifthDown;
+                if(fifthDown.getFill().equals(Color.BLUE))
+                    fifthDown.setFill(Color.RED);
+                else
+                    fifthDown.setFill(Color.BLUE);
+                return;
+            }
+            if(id.equals("sixthDown")){
+                isSixthDown = !isSixthDown;
+                if(sixthDown.getFill().equals(Color.BLUE))
+                    sixthDown.setFill(Color.RED);
+                else
+                    sixthDown.setFill(Color.BLUE);
+                return;
+            }
+            if(id.equals("seventhDown")){
+                isSeventhDown = !isSeventhDown;
+                if(seventhDown.getFill().equals(Color.BLUE))
+                    seventhDown.setFill(Color.RED);
+                else
+                    seventhDown.setFill(Color.BLUE);
+                return;
+            }
+            if(id.equals("eighthDown")){
+                isEighthDown = !isEighthDown;
+                if(eighthDown.getFill().equals(Color.BLUE))
+                    eighthDown.setFill(Color.RED);
+                else
+                    eighthDown.setFill(Color.BLUE);
+                System.out.println("isEighthDown: " + isEighthDown);
+                return;
+            }
+
+
+
+
+            // po kliknuti na symbol voziku
             if(id.contains("vozik")){
                 Stage vozikWindow = new Stage();
-                ListView<String> goodsNameCountList = new ListView<String>();
+                ListView<String> goodsNameCountList = new ListView<>();
                 ObservableList list = FXCollections.observableArrayList();
                 Integer vozikID = Integer.parseInt(id.split(":")[1]);
 
@@ -211,7 +392,7 @@ public class Controller implements Initializable {
                 List<String> nameGoodsRequest = new ArrayList<>();
                 List<String> countGoodsRequest = new ArrayList<>();
 
-                // magic
+                // magic vybere jen veci ktere ma vozik podle id dovest
                 for (int m=0; m < Main.nameGoodsRequest.size(); m++){
                     if(count + Integer.parseInt(Main.countGoodsRequest.get(m)) > 10 || m == Main.nameGoodsRequest.size() - 1){
                         if(m == Main.nameGoodsRequest.size() - 1){
@@ -227,16 +408,18 @@ public class Controller implements Initializable {
                     }
                     else{
                         count += Integer.parseInt(Main.countGoodsRequest.get(m));
-                        if(iterace == vozikID) {
+                        if(iterace.equals(vozikID)) {
                             nameGoodsRequest.add(Main.nameGoodsRequest.get(m));
                             countGoodsRequest.add(Main.countGoodsRequest.get(m));
                         }
                     }
                 }
 
+                // naplni list pripravenyma vecma
                 list.addAll(nameGoodsRequest, countGoodsRequest);
                 goodsNameCountList.getItems().addAll(list);
 
+                // vytvoreni noveho okna s listem veci na dovoz
                 VBox contain = new VBox(goodsNameCountList);
                 contain.setSpacing(15);
                 contain.setPadding(new Insets(15));
