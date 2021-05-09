@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -25,7 +24,7 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane fx:id="root" onMouseClicked="#onClickEvent" prefHeight="425.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+    <AnchorPane fx:id="root" onMouseClicked="#onClickEvent" onScroll="#zoom" prefHeight="425.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
       <children>
             <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#a8d5ff" height="400.0" stroke="#a8d5ff" strokeType="INSIDE" width="640.0" />
             <Group layoutX="14.0" layoutY="14.0" />

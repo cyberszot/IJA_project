@@ -24,6 +24,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -349,6 +350,8 @@ public class Controller implements Initializable {
         isEighthDown = false;
     }
 
+    double zoom = 1.00;
+
     /**
      * Zaplneni skladu ze souboru goods.txt
      */
@@ -483,7 +486,35 @@ public class Controller implements Initializable {
         shelfWindow.setResizable(false);
     }
 
+    /**
+     * Priblizeni a oddaleni obrazu
+     * @param scrollEvent Zjisteni jakym smerem uzivatel toci koleckem
+     */
+    public void zoom(ScrollEvent scrollEvent) {
+        if(scrollEvent.getDeltaY() > 0 && zoom >= 1.00){    // scrolluje nahoru
+            zoom += 0.05;
+            root.setTranslateX(-(scrollEvent.getX() - 320.00));
+            root.setTranslateY(-(scrollEvent.getY() - 210.00));
+            root.setScaleX(zoom);
+            root.setScaleY(zoom);
+        }
+        else{                           // scrolluje dolu
+            if(zoom != 1.00)
+                zoom -= 0.05;
+            else {
+                root.setTranslateX(0.00);
+                root.setTranslateY(0.00);
+            }
+            root.setScaleX(zoom);
+            root.setScaleY(zoom);
+        }
+    }
 
+    /**
+     * Vytvori cestu na zaklade indexu pro dany vuz
+     * @param indexGoodsRequest indexy zastavek
+     * @param vuz kolecko vozu
+     */
     public void vytvorCestu(List<Integer> indexGoodsRequest, Circle vuz) {
         int actualLine = 0;
         int nextLine = 0;
@@ -859,5 +890,7 @@ public class Controller implements Initializable {
         vozikWindow.show();
         vozikWindow.setResizable(false);
     }
+
+
 }
 
