@@ -10,8 +10,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
+<?import javafx.scene.control.ScrollPane?>
+
+<?import javafx.scene.layout.Pane?>
 <VBox prefHeight="420.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.vut.fit.ija21.controller.Controller">
-  <children>
+
+      <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
         <Menu mnemonicParsing="false" text="File">
@@ -201,13 +205,12 @@
             <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#59afff" height="348.0" layoutX="475.0" layoutY="14.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
             <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#59afff" height="348.0" layoutX="540.0" layoutY="14.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
             <Rectangle id="null" arcHeight="5.0" arcWidth="5.0" fill="#ffdf85" height="27.0" layoutX="75.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="34.0" />
-            <ToolBar id="null" layoutX="391.0" layoutY="362.0" prefHeight="35.0" prefWidth="154.0">
+            <ToolBar id="null" layoutX="391.0" layoutY="362.0" prefHeight="35.0" prefWidth="130.0">
               <items>
-                <Button id="null" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="1" />
-                  <Button id="null" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="2" />
-                  <Button id="null" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="3" />
-                  <Button id="null" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="4" />
-                  <Button id="null" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="5" />
+                <Button id="null" mnemonicParsing="false" prefHeight="25.0" onMouseClicked="#handleSpeed1" prefWidth="25.0" text="1" />
+                  <Button id="null" mnemonicParsing="false" prefHeight="25.0" onMouseClicked="#handleSpeed2" prefWidth="25.0" text="2" />
+                  <Button id="null" mnemonicParsing="false" prefHeight="25.0" onMouseClicked="#handleSpeed3" prefWidth="25.0" text="3" />
+                  <Button id="null" mnemonicParsing="false" prefHeight="25.0" onMouseClicked="#handleSpeed4" prefWidth="25.0" text="4" />
               </items>
             </ToolBar>
             <Button id="null" layoutX="556.0" layoutY="367.0" mnemonicParsing="false" onMouseClicked="#handleResetButton" text="RESET" />
