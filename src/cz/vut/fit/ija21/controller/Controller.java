@@ -839,7 +839,7 @@ public class Controller implements Initializable {
             else{
                 count += Integer.parseInt(Main.countGoodsRequest.get(m));
                 if(iterace.equals(vozikID)) {
-                    nameGoodsRequest.add(Main.nameGoodsRequest.get(m) + ", " + Main.countGoodsRequest.get(m) + "\n");
+                    nameGoodsRequest.add(Main.nameGoodsRequest.get(m) + ", " + Main.countGoodsRequest.get(m) + ", " + allIndexGoodsRequest.get(m) + "\n");
                 }
             }
         }

@@ -234,8 +234,6 @@
             <Label id="null" layoutX="20.0" layoutY="343.0" text="Pozadavky" />
             <Label id="null" layoutX="428.0" layoutY="343.0" text="Rychlost" />
             <Button id="null" layoutX="114.0" layoutY="367.0" mnemonicParsing="false" onMouseClicked="#spustitUzPozadavek" text="Spustit u. pozadavek" />
-            <ScrollBar id="null" layoutX="626.0" orientation="VERTICAL" prefHeight="392.0" prefWidth="14.0" />
-            <ScrollBar id="null" layoutX="240.0" layoutY="385.0" prefHeight="14.0" prefWidth="144.0" />
       </children>
     </AnchorPane>
   </children>

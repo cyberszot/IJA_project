@@ -38,7 +38,7 @@
         </jar>
     </target>
 
-    <target name="run" description="run application" depends="compile">
+    <target name="run" description="run application">
         <java jar="dest/ija-app.jar" fork="true">
             <modulepath path="lib/javafx-sdk-16/lib"/>
             <jvmarg line="--add-modules javafx.controls,javafx.fxml"/>
