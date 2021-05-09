@@ -1,11 +1,3 @@
-/**
- * project IJA21
- * date: 2021/05/08
- * authors: xkyjov03    :   Dalibor Kyjovsky
- *          xszotk07    :   Rene Szotkowski
- *
- * file: newPozadavekController.java
- */
 package cz.vut.fit.ija21.controller;
 
 import cz.vut.fit.ija21.main.Main;
@@ -39,8 +31,8 @@ public class newPozadavekController implements Initializable {
     /**
      * inicializace noveho pozadavku
      *
-     * @param url
-     * @param resourceBundle
+     * @param url url
+     * @param resourceBundle resourceBundle
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -66,18 +58,16 @@ public class newPozadavekController implements Initializable {
     /**
      * zobrazeni zbozi, ktere je oznaceno
      *
-     * @param mouseEvent
      */
-    public void gooodsSelected(MouseEvent mouseEvent) {
+    public void gooodsSelected() {
         selectedGoods.setText(goodsList.getSelectionModel().getSelectedItem());
     }
 
     /**
      * Pridani pozadavku po kliknuti tlacitka "pridat"
      *
-     * @param mouseEvent
      */
-    public void addPozadavek(MouseEvent mouseEvent) {
+    public void addPozadavek() {
         Main.nameGoodsRequest.add(goodsList.getSelectionModel().getSelectedItem());
         Main.countGoodsRequest.add(goodsCount.getText());
     }
@@ -85,7 +75,7 @@ public class newPozadavekController implements Initializable {
     /**
      * Zpracovani pozadavku po kliknuti tlacitka "Dokoncit"
      *
-     * @param mouseEvent
+     * @param mouseEvent zjisteni zdroje pro zavreni okna
      */
     public void zpracujPozadavek(MouseEvent mouseEvent) {
         // Zavre okno

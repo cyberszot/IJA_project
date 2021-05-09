@@ -1,11 +1,3 @@
-/**
- * project IJA21
- * date: 2021/04/13
- * authors: xkyjov03    :   Dalibor Kyjovsky
- *          xszotk07    :   Rene Szotkowski
- *
- * file: Controller.java
- */
 package cz.vut.fit.ija21.controller;
 
 
@@ -91,8 +83,8 @@ public class Controller implements Initializable {
 
     /**
      * Nastaveni potrebnych prepinacu po inicializaci
-     * @param location
-     * @param resources
+     * @param location location
+     * @param resources resources
      */
     public void initialize(URL location, ResourceBundle resources) {
         firstUp.setFill(Color.BLUE);
