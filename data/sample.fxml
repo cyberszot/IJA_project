@@ -10,8 +10,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<?import javafx.scene.shape.Circle?>
-
 <VBox prefHeight="420.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.vut.fit.ija21.controller.Controller">
   <children>
     <MenuBar VBox.vgrow="NEVER">
@@ -215,11 +213,27 @@
             <Button id="null" layoutX="556.0" layoutY="367.0" mnemonicParsing="false" onMouseClicked="#handleResetButton" text="RESET" />
             <ToolBar id="null" layoutX="15.0" layoutY="362.0" prefHeight="35.0" prefWidth="96.0">
                <items>
-                  <Button id="null" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" onMouseClicked="#handlePozadavek1" text="1" />
-                  <Button id="null" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" onMouseClicked="#handlePozadavek2" text="2" />
-                  <Button id="null" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" onMouseClicked="#handlePozadavek3" text="3" />
+                  <Button id="null" mnemonicParsing="false" onMouseClicked="#handlePozadavek1" prefHeight="25.0" prefWidth="25.0" text="1" />
+                  <Button id="null" mnemonicParsing="false" onMouseClicked="#handlePozadavek2" prefHeight="25.0" prefWidth="25.0" text="2" />
+                  <Button id="null" mnemonicParsing="false" onMouseClicked="#handlePozadavek3" prefHeight="25.0" prefWidth="25.0" text="3" />
                </items>
             </ToolBar>
+            <Rectangle fx:id="firstUp" id="firstUp" arcHeight="5.0" arcWidth="5.0" fill="#309fff" height="16.0" layoutX="84.0" layoutY="155.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
+            <Rectangle fx:id="secondUp" id="secondUp" arcHeight="5.0" arcWidth="5.0" fill="#309fff" height="16.0" layoutX="149.0" layoutY="155.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
+            <Rectangle fx:id="thirdUp" id="thirdUp" arcHeight="5.0" arcWidth="5.0" fill="#309fff" height="16.0" layoutX="213.0" layoutY="155.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
+            <Rectangle fx:id="fourthUp" id="fourthUp" arcHeight="5.0" arcWidth="5.0" fill="#309fff" height="16.0" layoutX="283.0" layoutY="155.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
+            <Rectangle fx:id="fifthUp" id="fifthUp" arcHeight="5.0" arcWidth="5.0" fill="#309fff" height="16.0" layoutX="344.0" layoutY="155.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
+            <Rectangle fx:id="sixthUp" id="sixthUp" arcHeight="5.0" arcWidth="5.0" fill="#309fff" height="16.0" layoutX="409.0" layoutY="155.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
+            <Rectangle fx:id="seventhUp" id="seventhUp" arcHeight="5.0" arcWidth="5.0" fill="#309fff" height="16.0" layoutX="475.0" layoutY="155.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
+            <Rectangle fx:id="eighthUp" id="eighthUp" arcHeight="5.0" arcWidth="5.0" fill="#309fff" height="16.0" layoutX="540.0" layoutY="155.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
+            <Rectangle fx:id="firstDown" id="firstDown" arcHeight="5.0" arcWidth="5.0" fill="#309fff" height="16.0" layoutX="84.0" layoutY="188.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
+            <Rectangle fx:id="secondDown" id="secondDown" arcHeight="5.0" arcWidth="5.0" fill="#309fff" height="16.0" layoutX="149.0" layoutY="188.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
+            <Rectangle fx:id="thirdDown" id="thirdDown" arcHeight="5.0" arcWidth="5.0" fill="#309fff" height="16.0" layoutX="213.0" layoutY="188.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
+            <Rectangle fx:id="fourthDown" id="fourthDown" arcHeight="5.0" arcWidth="5.0" fill="#309fff" height="16.0" layoutX="283.0" layoutY="188.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
+            <Rectangle fx:id="fifthDown" id="fifthDown" arcHeight="5.0" arcWidth="5.0" fill="#309fff" height="16.0" layoutX="344.0" layoutY="188.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
+            <Rectangle fx:id="sixthDown" id="sixthDown" arcHeight="5.0" arcWidth="5.0" fill="#309fff" height="16.0" layoutX="409.0" layoutY="188.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
+            <Rectangle fx:id="seventhDown" id="seventhDown" arcHeight="5.0" arcWidth="5.0" fill="#309fff" height="16.0" layoutX="475.0" layoutY="188.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
+            <Rectangle fx:id="eighthDown" id="eighthDown" arcHeight="5.0" arcWidth="5.0" fill="#309fff" height="16.0" layoutX="540.0" layoutY="188.0" stroke="#59afff" strokeType="INSIDE" width="16.0" />
       </children>
     </AnchorPane>
   </children>
